@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="./fontawesome/css/all.css">
+</head>
+
+<body>
+  <div class="overall">
+    <div class="main-container">
+      <div class="memory-logo">
+        <img src="./starter-code/assets/logo.svg" alt="">
+      </div>
+      <form id="form">
+        <div class="container" id="m-container">
+          <div class="">
+            <p class="themetitle">Select Theme</p>
+            <div class="">
+              <label>
+                <input type="radio" name="themeradio" id="numbers-input" />
+                <div class="numbers box">
+                  <span>Numbers</span>
+                </div>
+              </label>
+              <label>
+                <input type="radio" name="themeradio" id="icons-input" />
+                <div class="icons box">
+                  <span>Icons</span>
+                </div>
+              </label>
+            </div>
+          </div>
+          <div class="playersmain">
+            <p class="themetitle">Number of players</p>
+            <div class="">
+              <label>
+                <input type="radio" name="numberradio" id="player1-input" />
+                <div class="players box">
+                  <span>1</span>
+                </div>
+              </label>
+              <label>
+                <input type="radio" name="numberradio" id="player2-input" />
+                <div class="players box">
+                  <span>2</span>
+                </div>
+              </label>
+              <label>
+                <input type="radio" name="numberradio" id="player3-input" />
+                <div class="players box">
+                  <span>3</span>
+                </div>
+              </label>
+              <label>
+                <input type="radio" name="numberradio" id="player4-input" />
+                <div class="players box">
+                  <span>4</span>
+                </div>
+              </label>
+            </div>
+          </div>
+          <div class="">
+            <p class="themetitle">Grid Size</p>
+            <div class="">
+              <label>
+                <input type="radio" name="sizeradio" id="fxf-input"/>
+                <div class="numbers box">
+                  <span>4 x 4</span>
+                </div>
+              </label>
+              <label>
+                <input type="radio" name="sizeradio" id="sxs-input" />
+                <div class="icons box">
+                  <span>6 x 6</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="start">Start Game</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="./jquery.js"></script>
+  <script src="index.js"></script>
+</body>
+
+</html>
