@@ -10,7 +10,9 @@ body{
   padding-bottom: 3.3rem;
 }
 .main1{
-  background-color: #fff;
+  background-color: #ffffff;
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  /* backdrop-filter: blur(5px); */
 }
 .memory-logo {
 filter: invert(1);
@@ -292,11 +294,87 @@ padding: 0.4rem;
 
 /* Results */
 .wincontainer{
-  width: 50%;
-  padding: 4rem;
-  margin-top: -50rem;
+  border-radius: 50px;
+  text-align: center;
+  width: 35%;
+  /* margin-top: -37rem; */
   z-index: 999;
-  background-color: red;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
   position: absolute;
-  display: none;
+  margin-left: 25rem;
+  padding: 3rem;
+}
+.didtop{
+  font-size: 32px;
+  color: rgb(21, 41, 56);
+  font-weight: 600;
+}
+.diddown{
+  font-size: 20px;
+  color: rgb(113, 145, 165);
+  font-weight: 600;
+}
+.elapse{
+  background-color: rgb(183, 213, 216);
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  margin-top: 3rem;
+}
+.elapsetitle{
+  color: rgb(113, 145, 165);
+  font-size: 20px;
+}
+.elapsetitletime{
+  color: rgb(21, 41, 56);
+  font-size: 32px;
+}
+.movestaken{
+  margin-top: 1rem;
+  background-color: rgb(183, 213, 216);
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  font-weight: 600;
+  border-radius: 10px;}
+.taken_title {
+  color: rgb(57, 255, 7);
+  font-size: 40px;
+}
+.movestaken_time{
+  color: rgb(113, 145, 165);
+  font-size: 32px;
+}
+.winstarts{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  font-weight: 600;
+  border-radius: 10px;}
+.winrestart{
+  background-color: rgb(253, 162, 20);
+  color: rgb(21, 41, 56);
+  font-size: 20px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top:1rem;
+  padding-bottom: 1rem;
+  border-radius: 30px;
+width: 50%;
+}
+.winsetup{
+  background-color: rgb(183, 213, 216);
+  color: rgb(21, 41, 56);
+  font-size: 20px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top:1rem;
+  padding-bottom: 1rem;
+  width: 50%;
+border-radius: 30px;
 }
