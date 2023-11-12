@@ -5,9 +5,9 @@ body{
 .main-container {
   background-color: rgb(21, 41, 56);
   padding-left: 21em;
-  padding-right: 21rem;
-  padding-top: 4rem;
-  padding-bottom: 3.3rem;
+  padding-right: 31rem;
+  padding-top: 5rem;
+  padding-bottom: 5.35rem;
 }
 .main1{
   background-color: #ffffff;
@@ -20,7 +20,7 @@ text-align: center;
 margin-bottom: 4rem;
 }
 .container {
-  padding: 2rem;
+  padding: 1.5rem;
   background-color: rgb(242, 242, 242);
   border-radius: 10px;
 }
@@ -133,9 +133,12 @@ margin-right: 1rem;
 .down{
   display: flex;
   gap: 2rem;
-  margin-left: 30rem;
-  margin-top: 4rem;
-  margin-bottom: 4rem;
+  margin-left: 17rem;
+  margin-top: 3rem;
+  margin-bottom: rem;
+}
+.startsDiv2{
+  display: none;
 }
 .playersdown{
   background-color: rgb(188, 206, 217);
@@ -175,6 +178,7 @@ padding: 0.4rem;
  transform: rotateY(180deg);
   border-radius: 100%;
  transition: 0.25s;
+ /* opacity: 0.5; */
 }
 .sxsitem{
   position: relative;
@@ -188,6 +192,7 @@ padding: 0.4rem;
  transform: rotateY(180deg);
   border-radius: 100%;
  transition: 0.25s;
+ /* opacity: 0.6; */
 }
 
 .item.boxOpen{
@@ -372,4 +377,333 @@ width: 50%;
   padding-bottom: 1rem;
   width: 50%;
 border-radius: 30px;
+}
+.active-player{
+  background-color: rgb(253, 162, 20);
+}
+
+
+@media screen and (max-width: 375px){
+
+  .startDivDesktop{
+    display: none;
+  }
+
+  .startsDiv2{
+    display: block;
+    background-color: rgb(253, 162, 20);
+    border: none;
+    color: white;
+    font-size: 20px;
+    border-radius: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;  
+    font-weight: 600;
+    margin-right: 0rem;
+  }
+  
+  .startsDiv2>li{
+    color: rgb(113, 145, 165);
+    background-color: rgb(252, 170, 39);
+  }
+
+  .main-container {
+    padding-left: 1em;
+    padding-right: 1rem;
+    padding-top: 1rem;
+  }
+
+  .memory-logo {
+  margin-bottom: 1rem;
+  }
+  .container {
+    padding: 0.3rem;
+  }
+  input {
+    display: none;
+  }
+
+  
+  .box {
+    border-radius: 30px;
+    background-color: rgb(188, 206, 217);
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    font-family: font;
+    font-weight: 900;
+    &:active {
+      transform: translateY(10px);
+    }
+  }
+  
+  span {
+    font-size: 2em;
+    color: rgb(255, 255, 255);
+  }
+  
+  .numbers {
+    width: 10em;
+  }
+  .icons {
+    width: 7rem;
+    margin-left: 1rem;
+  }
+  .players {
+    width: 7rem;
+    margin: 1rem;
+  }
+  
+  .start{
+    width: 17rem;
+    margin-top: 1rem;
+    padding: 0.4rem;
+    margin-left: 10px;
+  }
+  /* css for main 1 */
+  .top{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 5rem;
+    padding-bottom: 1rem;
+  }
+  .restart{
+    background-color: rgb(253, 162, 20);
+    border: none;
+    color: white;
+    font-size: 20px;
+    border-radius: 20rem;
+    border-radius: 20rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;  font-weight: 600;
+  margin-right: 1rem;
+  }
+  .newgame{
+    background-color: rgb(188, 206, 217);
+    border: none;
+    color: white;
+    font-size: 20px;
+    border-radius: 20rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-weight: 600;
+  }
+  .middle{
+    margin-left: 30%;
+    width: 35%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 3px;
+  }
+  
+  /* START:: the down div */
+  .down{
+    display: flex;
+    gap: 1rem;
+    margin-left: 0.1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .playersdown{
+    background-color: rgb(188, 206, 217);
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 600;
+    width: 16rem;
+    border-radius: 10px;
+    padding: 0.4rem;
+  }
+  .playername{
+    font-size: 0.9em;
+    color: rgb(113, 145, 165);
+  }
+  .scorename{
+    font-size: 1.5em;
+    color: rgb(21, 51, 56);
+  }
+  .current{
+    font-size: 20px;
+    color: rgb(21, 41, 56);
+    text-align: center;
+    margin-left: -10rem;
+  }
+  
+  .item{
+    position: relative;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+   background-color: rgb(188, 206, 217);
+   transform: rotateY(180deg);
+    border-radius: 100%;
+   transition: 0.25s;
+  }
+  .sxsitem{
+    width: 55px;
+    height: 55px;
+    font-size: 2em;
+   background-color: rgb(188, 206, 217);
+   transform: rotateY(180deg);
+    border-radius: 100%;
+   transition: 0.25s;
+  }
+  
+  .item.boxOpen{
+    transform: rotateY(0deg);
+    background-color: rgb(253, 162, 20);
+  }
+  .sxsitem.boxOpen{
+    transform: rotateY(0deg);
+    background-color: rgb(253, 162, 20);
+  }
+  
+  .item::after{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #152938;
+    transition: 0.25s;
+    /* opacity: 0.45; */
+    transform: rotate(180deg);
+    backface-visibility: hidden;
+    border-radius: 100%;
+  }
+  .sxsitem::after{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #152938;
+    transition: 0.25s;
+    /* opacity: 0.45; */
+    transform: rotate(180deg);
+    backface-visibility: hidden;
+    border-radius: 100%;
+  }
+  
+  .boxOpen:after{
+    transform: rotateY(180deg);
+  } 
+  
+  .boxMatch:after{
+    transform: rotateY(180deg);
+  } 
+  .fxfmiddle{
+    margin-left: 9%;
+    width: 310px;
+    height: 320px;
+  }
+  .sxsmiddle{
+    margin-left: 4%;
+    width: 350px;
+    height: 360px;
+    gap: 3px;
+  }
+  
+  .timediv{
+    background-color: #f2f2f2;
+    display: flex;
+    gap: 1px;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+  .movesdiv{
+    background-color: #f2f2f2;
+    display: flex;
+    gap: 1px;
+    padding: 1rem;
+    border-radius: 10px;
+  
+  }
+  .timetitle{
+    font-size: 20px;
+    color: rgb(113, 145, 165);
+  
+  }
+  .time{
+    font-size: 32px;
+    color: rgb(21, 41, 56);
+    font-weight: 600;
+  }
+  .movestitle{
+    font-size: 20px;
+    color: rgb(113, 145, 165);
+  
+  }
+  .moves{
+    font-size: 32px;
+    color: rgb(21, 41, 56);
+    font-weight: 600;
+  }
+  
+  /* Results */
+  .wincontainer{
+    width: 85%;
+    display: none;
+    margin-left: 1rem;
+    padding: 1rem;
+  }
+  .didtop{
+    font-size: 32px;
+  }
+  .diddown{
+    font-size: 20px;
+  }
+  .elapse{
+    margin-top: 1rem;
+  }
+  .elapsetitle{
+    color: rgb(113, 145, 165);
+    font-size: 20px;
+  }
+  .elapsetitletime{
+    color: rgb(21, 41, 56);
+    font-size: 32px;
+  }
+  .movestaken{
+    margin-top: 1rem;
+    background-color: rgb(183, 213, 216);
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    font-weight: 600;
+    border-radius: 10px;
+  }
+  .taken_title {
+    color: rgb(57, 255, 7);
+    font-size: 40px;
+  }
+  .movestaken_time{
+    color: rgb(113, 145, 165);
+    font-size: 32px;
+  }
+  .winstarts{
+    display: block;
+    margin-top: 2rem;
+  }
+  .winrestart{
+    width: 90%;
+    margin-bottom: 1rem;
+  }
+  .winsetup{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 90%;
+  }
+  .active-player{
+    background-color: rgb(253, 162, 20);
+  }
 }

@@ -12,21 +12,17 @@ var main = $(".main-container");
 var overall = $(".overall");
 var restart = $(".restart");
 var newgame = $(".newgame");
+let playercount=[0,0,0,0];
+let currentplayer=1;
+let numberOfPlayers=0;
 
 form.on("submit", function (event) {
   event.preventDefault();
 
   // START:: Numbers, multiple users and 4x4 grid checked
   if (numbers.is(":checked") && fxf.is(":checked") && !player1.is(":checked")) {
-    let numberOfPlayers;
-    let currentplayer=2;
-    let playerone;
-    let playertwo;
-    let playerthree;
-    let playerfour;
     if (player4.is(":checked")) {
       numberOfPlayers = 4;
-      let currentplayer;
     } else if (player3.is( ":checked")) {
       numberOfPlayers = 3;
     } else if (player2.is(":checked")) {
@@ -80,6 +76,13 @@ form.on("submit", function (event) {
         "7",
         "8",
       ];
+    // FUNCTION TO SWITCH BETWEEN PLAYERS
+    function switchplayer(){
+      document.querySelector('.playersdown.active-player').classList.remove('active-player');
+      currentplayer = (currentplayer % numberOfPlayers) + 1;
+      document.querySelector('.playersdown:nth-child(' + currentplayer + ')').classList.add('active-player');
+    }
+
       var shuf_numbers = numbers.sort(() => (Math.random() > 0.5 ? 2 : -1));
       for (var i = 0; i < numbers.length; i++) {
         let box = document.createElement("div");
@@ -107,11 +110,29 @@ form.on("submit", function (event) {
                 document
                   .querySelectorAll(".boxOpen")[0]
                   .classList.remove("boxOpen");
+                const playerwinCount = document.querySelector('.playersdown.active-player .scorename');
+
+                  playercount[currentplayer - 1]++;
+
+                  playerwinCount.textContent = playercount[currentplayer - 1];
 
                 if (
                   document.querySelectorAll(".boxMatch").length ==
                   numbers.length
                 ) {
+                  for (let i = 0; i < numberOfPlayers; i++) {
+                    let elapse = document.createElement("div");
+                    elapse.classList.add("elapse");
+                    let elapsetitle = document.createElement("div");
+                    elapsetitle.classList.add("elapsetitle");
+                    elapsetitle.innerText = "Player " + (i+1);
+                    elapse.append(elapsetitle);
+                    let elapsetime = document.createElement("div");
+                    elapsetime.classList.add("elapsetitletime");
+                    elapsetime.innerText = playercount[i];
+                    elapse.append(elapsetime);
+                    winContainer.append(elapse);
+                  }
                   //  When all the boxes are opened
                   main1.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
                   main1.style.backdropFilter = "blur(5px)";
@@ -121,14 +142,17 @@ form.on("submit", function (event) {
                   winContainer.style.marginTop = "-37rem";
                 }
               } else {
+                
                 document
                   .querySelectorAll(".boxOpen")[1]
                   .classList.remove("boxOpen");
                 document
                   .querySelectorAll(".boxOpen")[0]
                   .classList.remove("boxOpen");
+                  switchplayer();
               }
             }
+           
           }, 500);
         };
 
@@ -148,11 +172,8 @@ form.on("submit", function (event) {
 
         let h = document.createElement("div");
         h.classList.add("scorename");
-        function getRandomNumber() {
-          return Math.floor(Math.random() * 9) + 1;
-        }
-        const randomNum = getRandomNumber();
-        h.innerText = randomNum;
+       
+        h.innerText = playercount[1];
 
         playerDiv.appendChild(p); // Append the <p> element to playerDiv
         playerDiv.appendChild(h); // Append the <h1> element to playerDiv
@@ -160,12 +181,12 @@ form.on("submit", function (event) {
         down.appendChild(playerDiv);
 
         if (players === currentplayer) {
-          playerDiv.style.backgroundColor = "rgb(253, 162, 20)";
-          h.style.color = "rgb(255, 255, 255)";
-          p.style.color = "rgb(255, 255, 255)";
+          playerDiv.classList.add("active-player");
         }
       }
     }
+
+
 
     handleplayers();
 
@@ -185,21 +206,6 @@ form.on("submit", function (event) {
     didit.append(didtop);
     didit.append(diddown);
     winContainer.append(didit);
-
-    // loop for players and their scores
-    for (let i = 0; i < 4; i++) {
-      let elapse = document.createElement("div");
-      elapse.classList.add("elapse");
-      let elapsetitle = document.createElement("div");
-      elapsetitle.classList.add("elapsetitle");
-      elapsetitle.innerText = "Time Elapsed";
-      elapse.append(elapsetitle);
-      let elapsetime = document.createElement("div");
-      elapsetime.classList.add("elapsetitletime");
-      elapsetime.innerText = "1:52";
-      elapse.append(elapsetime);
-      winContainer.append(elapse);
-    }
 
     // Remove existing content from the "main" element
     overall.empty();
@@ -242,6 +248,7 @@ form.on("submit", function (event) {
     let newgameButton = document.createElement("button");
     newgameButton.classList.add("newgame");
     newgameButton.innerText = "New Game";
+    s
     top.classList.add("top");
     middle.classList.add("sxsmiddle");
     down.classList.add("down");
@@ -292,6 +299,13 @@ form.on("submit", function (event) {
         "17",
         "18",
       ];
+          // FUNCTION TO SWITCH BETWEEN PLAYERS
+    function switchplayer(){
+      document.querySelector('.playersdown.active-player').classList.remove('active-player');
+      currentplayer = (currentplayer % numberOfPlayers) + 1;
+      document.querySelector('.playersdown:nth-child(' + currentplayer + ')').classList.add('active-player');
+    }
+
       var shuf_numbers = numbers.sort(() => (Math.random() > 0.5 ? 2 : -1));
       for (var i = 0; i < numbers.length; i++) {
         let box = document.createElement("div");
@@ -320,11 +334,28 @@ form.on("submit", function (event) {
                   .querySelectorAll(".boxOpen")[0]
                   .classList.remove("boxOpen");
 
+                  const playerwinCount = document.querySelector('.playersdown.active-player .scorename');
+                  playercount[currentplayer - 1]++;
+                  playerwinCount.textContent = playercount[currentplayer - 1];
+
                 if (
                   document.querySelectorAll(".boxMatch").length ==
                   numbers.length
                 ) {
-                  //  When are the boxes are opened
+                  for (let i = 0; i < numberOfPlayers; i++) {
+                    let elapse = document.createElement("div");
+                    elapse.classList.add("elapse");
+                    let elapsetitle = document.createElement("div");
+                    elapsetitle.classList.add("elapsetitle");
+                    elapsetitle.innerText = "Player " + (i+1);
+                    elapse.append(elapsetitle);
+                    let elapsetime = document.createElement("div");
+                    elapsetime.classList.add("elapsetitletime");
+                    elapsetime.innerText = playercount[i];
+                    elapse.append(elapsetime);
+                    winContainer.append(elapse);
+                  }
+                  //  When all the boxes are opened
                   main1.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
                   main1.style.backdropFilter = "blur(5px)";
                   winContainer.style.marginTop = "-37rem";
@@ -339,6 +370,7 @@ form.on("submit", function (event) {
                 document
                   .querySelectorAll(".boxOpen")[0]
                   .classList.remove("boxOpen");
+                  switchplayer();
               }
             }
           }, 500);
@@ -360,21 +392,17 @@ form.on("submit", function (event) {
 
         let h = document.createElement("div");
         h.classList.add("scorename");
-        function getRandomNumber() {
-          return Math.floor(Math.random() * 9) + 1;
-        }
-        const randomNum = getRandomNumber();
-        h.innerText = randomNum;
+       
+        h.innerText = playercount[1];
+
 
         playerDiv.appendChild(p); // Append the <p> element to playerDiv
         playerDiv.appendChild(h); // Append the <h1> element to playerDiv
 
         down.appendChild(playerDiv);
 
-        if (players === 2) {
-          playerDiv.style.backgroundColor = "rgb(253, 162, 20)";
-          h.style.color = "rgb(255, 255, 255)";
-          p.style.color = "rgb(255, 255, 255)";
+        if (players === currentplayer) {
+          playerDiv.classList.add("active-player");
         }
       }
     }
@@ -399,19 +427,19 @@ form.on("submit", function (event) {
     winContainer.append(didit);
 
     // loop for players and their scores
-    for (let i = 0; i < 4; i++) {
-      let elapse = document.createElement("div");
-      elapse.classList.add("elapse");
-      let elapsetitle = document.createElement("div");
-      elapsetitle.classList.add("elapsetitle");
-      elapsetitle.innerText = "Time Elapsed";
-      elapse.append(elapsetitle);
-      let elapsetime = document.createElement("div");
-      elapsetime.classList.add("elapsetitletime");
-      elapsetime.innerText = "1:52";
-      elapse.append(elapsetime);
-      winContainer.append(elapse);
-    }
+    // for (let i = 0; i < 4; i++) {
+    //   let elapse = document.createElement("div");
+    //   elapse.classList.add("elapse");
+    //   let elapsetitle = document.createElement("div");
+    //   elapsetitle.classList.add("elapsetitle");
+    //   elapsetitle.innerText = "Time Elapsed";
+    //   elapse.append(elapsetitle);
+    //   let elapsetime = document.createElement("div");
+    //   elapsetime.classList.add("elapsetitletime");
+    //   elapsetime.innerText = "1:52";
+    //   elapse.append(elapsetime);
+    //   winContainer.append(elapse);
+    // }
 
     let winstarts = document.createElement("div");
     winstarts.classList.add("winstarts");
@@ -468,6 +496,9 @@ form.on("submit", function (event) {
     let newgameButton = document.createElement("button");
     newgameButton.classList.add("newgame");
     newgameButton.innerText = "New Game";
+    newgameButton.addEventListener("click", function (event) {
+      location.reload();
+    });
     top.classList.add("top");
     middle.classList.add("sxsmiddle");
     down.classList.add("down");
@@ -689,6 +720,7 @@ form.on("submit", function (event) {
     let down = document.createElement("div");
     let memoryDiv = document.createElement("div");
     let startsDiv = document.createElement("div");
+    startsDiv.classList.add('startDivDesktop');
     let restartButton = document.createElement("button");
     let restartB = restartButton.classList.add("restart");
     restartButton.addEventListener("click", function (event) {
@@ -698,11 +730,33 @@ form.on("submit", function (event) {
     let newgameButton = document.createElement("button");
     newgameButton.classList.add("newgame");
     newgameButton.innerText = "New Game";
+    newgameButton.addEventListener("click", function (event) {
+      location.reload();
+    });
+
+        // small screen
+        let startsDiv2 = document.createElement('div');
+        startsDiv2.classList.add('startsDiv2');
+        startsDiv2.innerText = "Menu";
+        let restart2 = document.createElement('li');
+        restart2.innerText = 'Restart';
+        restart2.addEventListener("click", function (event) {
+          alert("ssssssssssssssssssssssssss");
+        });
+        let newgame2 = document.createElement('li');
+        newgame2.innerText = 'New Game';
+        newgame2.addEventListener("click", function (event) {
+          location.reload();
+        });
+        startsDiv2.addEventListener("click", function (event) {
+          startsDiv2.append(restart2, newgame2);
+        });
+
     top.classList.add("top");
     middle.classList.add("sxsmiddle");
     down.classList.add("down");
     main1.classList.add("main1");
-    top.append(memoryDiv, startsDiv);
+    top.append(memoryDiv, startsDiv, startsDiv2);
     startsDiv.append(restartButton, newgameButton);
     let logo = document.createElement("img");
     logo.setAttribute("src", "./starter-code/assets/logo.svg");
@@ -748,6 +802,13 @@ form.on("submit", function (event) {
         "wifi",
         "euro-sign",
       ];
+                // FUNCTION TO SWITCH BETWEEN PLAYERS
+    function switchplayer(){
+      document.querySelector('.playersdown.active-player').classList.remove('active-player');
+      currentplayer = (currentplayer % numberOfPlayers) + 1;
+      document.querySelector('.playersdown:nth-child(' + currentplayer + ')').classList.add('active-player');
+    }
+
       var shuf_numbers = numbers.sort(() => (Math.random() > 0.5 ? 2 : -1));
       for (var i = 0; i < numbers.length; i++) {
         let box = document.createElement("div");
@@ -777,10 +838,28 @@ form.on("submit", function (event) {
                   .querySelectorAll(".boxOpen")[0]
                   .classList.remove("boxOpen");
 
+                  // display count for the player
+                  const playerwinCount = document.querySelector('.playersdown.active-player .scorename');
+                  playercount[currentplayer - 1]++;
+                  playerwinCount.textContent = playercount[currentplayer - 1];
+
                 if (
                   document.querySelectorAll(".boxMatch").length ==
                   numbers.length
                 ) {
+                  for (let i = 0; i < numberOfPlayers; i++) {
+                    let elapse = document.createElement("div");
+                    elapse.classList.add("elapse");
+                    let elapsetitle = document.createElement("div");
+                    elapsetitle.classList.add("elapsetitle");
+                    elapsetitle.innerText = "Player " + (i+1);
+                    elapse.append(elapsetitle);
+                    let elapsetime = document.createElement("div");
+                    elapsetime.classList.add("elapsetitletime");
+                    elapsetime.innerText = playercount[i];
+                    elapse.append(elapsetime);
+                    winContainer.append(elapse);
+                  }
                   // WHEN ALL BOXES ARE OPENED;
                   main1.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
                   main1.style.backdropFilter = "blur(5px)";
@@ -798,6 +877,7 @@ form.on("submit", function (event) {
                 document
                   .querySelectorAll(".boxOpen")[0]
                   .classList.remove("boxOpen");
+                  switchplayer();
               }
             }
           }, 500);
@@ -819,21 +899,16 @@ form.on("submit", function (event) {
 
         let h = document.createElement("div");
         h.classList.add("scorename");
-        function getRandomNumber() {
-          return Math.floor(Math.random() * 9) + 1;
-        }
-        const randomNum = getRandomNumber();
-        h.innerText = randomNum;
+  
+        h.innerText = 0;
 
         playerDiv.appendChild(p); // Append the <p> element to playerDiv
         playerDiv.appendChild(h); // Append the <h1> element to playerDiv
 
         down.appendChild(playerDiv);
 
-        if (players === 2) {
-          playerDiv.style.backgroundColor = "rgb(253, 162, 20)";
-          h.style.color = "rgb(255, 255, 255)";
-          p.style.color = "rgb(255, 255, 255)";
+       if (players === currentplayer) {
+          playerDiv.classList.add("active-player");
         }
       }
     }
@@ -857,21 +932,6 @@ form.on("submit", function (event) {
     didit.append(didtop);
     didit.append(diddown);
     winContainer.append(didit);
-
-    // loop for players and their scores
-    for (let i = 0; i < 4; i++) {
-      let elapse = document.createElement("div");
-      elapse.classList.add("elapse");
-      let elapsetitle = document.createElement("div");
-      elapsetitle.classList.add("elapsetitle");
-      elapsetitle.innerText = "Time Elapsed";
-      elapse.append(elapsetitle);
-      let elapsetime = document.createElement("div");
-      elapsetime.classList.add("elapsetitletime");
-      elapsetime.innerText = "1:52";
-      elapse.append(elapsetime);
-      winContainer.append(elapse);
-    }
 
     let winstarts = document.createElement("div");
     winstarts.classList.add("winstarts");
@@ -919,20 +979,45 @@ form.on("submit", function (event) {
     let down = document.createElement("div");
     let memoryDiv = document.createElement("div");
     let startsDiv = document.createElement("div");
+    startsDiv.classList.add('startDivDesktop');
     let restartButton = document.createElement("button");
     let restartB = restartButton.classList.add("restart");
     restartButton.addEventListener("click", function (event) {
-      alert("sssssssss");
+      alert('sssssssssssssssssssss');
     });
     restartButton.innerText = "Restart";
     let newgameButton = document.createElement("button");
     newgameButton.classList.add("newgame");
     newgameButton.innerText = "New Game";
+    newgameButton.addEventListener("click", function (event) {
+      location.reload();
+    });
+
+          // small screen
+          let startsDiv2 = document.createElement('div');
+          startsDiv2.classList.add('startsDiv2');
+          startsDiv2.innerText = "Menu";
+          let restart2 = document.createElement('li');
+          restart2.innerText = 'Restart';
+          restart2.addEventListener("click", function (event) {
+            alert("ssssssssssssssssssssssssss");
+          });
+          let newgame2 = document.createElement('li');
+          newgame2.innerText = 'New Game';
+          newgame2.addEventListener("click", function (event) {
+            location.reload();
+          });
+          startsDiv2.addEventListener("click", function (event) {
+            startsDiv2.append(restart2, newgame2);
+          });
+  
+
+
     top.classList.add("top");
     middle.classList.add("sxsmiddle");
     down.classList.add("down");
     main1.classList.add("main1");
-    top.append(memoryDiv, startsDiv);
+    top.append(memoryDiv, startsDiv ,startsDiv2);
     startsDiv.append(restartButton, newgameButton);
     let logo = document.createElement("img");
     logo.setAttribute("src", "./starter-code/assets/logo.svg");
@@ -1150,6 +1235,7 @@ form.on("submit", function (event) {
     let down = document.createElement("div");
     let memoryDiv = document.createElement("div");
     let startsDiv = document.createElement("div");
+    startsDiv.classList.add('startDivDesktop');
     let restartButton = document.createElement("button");
     let restartB = restartButton.classList.add("restart");
     restartButton.addEventListener("click", function (event) {
@@ -1159,11 +1245,33 @@ form.on("submit", function (event) {
     let newgameButton = document.createElement("button");
     newgameButton.classList.add("newgame");
     newgameButton.innerText = "New Game";
+    newgameButton.addEventListener("click", function (event) {
+      location.reload();
+    });
+
+        // small screen
+        let startsDiv2 = document.createElement('div');
+        startsDiv2.classList.add('startsDiv2');
+        startsDiv2.innerText = "Menu";
+        let restart2 = document.createElement('li');
+        restart2.innerText = 'Restart';
+        restart2.addEventListener("click", function (event) {
+          alert("ssssssssssssssssssssssssss");
+        });
+        let newgame2 = document.createElement('li');
+        newgame2.innerText = 'New Game';
+        newgame2.addEventListener("click", function (event) {
+          location.reload();
+        });
+        startsDiv2.addEventListener("click", function (event) {
+          startsDiv2.append(restart2, newgame2);
+        });
+
     top.classList.add("top");
     middle.classList.add("fxfmiddle");
     down.classList.add("down");
     main1.classList.add("main1");
-    top.append(memoryDiv, startsDiv);
+    top.append(memoryDiv, startsDiv, startsDiv2);
     startsDiv.append(restartButton, newgameButton);
     let logo = document.createElement("img");
     logo.setAttribute("src", "./starter-code/assets/logo.svg");
@@ -1190,6 +1298,13 @@ form.on("submit", function (event) {
         "random",
         "apple-alt",
       ];
+                    // FUNCTION TO SWITCH BETWEEN PLAYERS
+    function switchplayer(){
+      document.querySelector('.playersdown.active-player').classList.remove('active-player');
+      currentplayer = (currentplayer % numberOfPlayers) + 1;
+      document.querySelector('.playersdown:nth-child(' + currentplayer + ')').classList.add('active-player');
+    }
+    
       var shuf_numbers = numbers.sort(() => (Math.random() > 0.5 ? 2 : -1));
       for (var i = 0; i < numbers.length; i++) {
         let box = document.createElement("div");
@@ -1219,10 +1334,31 @@ form.on("submit", function (event) {
                   .querySelectorAll(".boxOpen")[0]
                   .classList.remove("boxOpen");
 
+                  // display count for the player
+                  const playerwinCount = document.querySelector('.playersdown.active-player .scorename');
+                  playercount[currentplayer - 1]++;
+                  playerwinCount.textContent = playercount[currentplayer - 1];
+
+
+
+
                 if (
                   document.querySelectorAll(".boxMatch").length ==
                   numbers.length
                 ) {
+                  for (let i = 0; i < numberOfPlayers; i++) {
+                    let elapse = document.createElement("div");
+                    elapse.classList.add("elapse");
+                    let elapsetitle = document.createElement("div");
+                    elapsetitle.classList.add("elapsetitle");
+                    elapsetitle.innerText = "Player " + (i+1);
+                    elapse.append(elapsetitle);
+                    let elapsetime = document.createElement("div");
+                    elapsetime.classList.add("elapsetitletime");
+                    elapsetime.innerText = playercount[i];
+                    elapse.append(elapsetime);
+                    scoreDiv.append(elapse);
+                  }
                   // WHEN ALL BOXES ARE OPENED;
                   winContainer.style.display = "block";
                   main1.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
@@ -1241,6 +1377,7 @@ form.on("submit", function (event) {
                 document
                   .querySelectorAll(".boxOpen")[0]
                   .classList.remove("boxOpen");
+                  switchplayer();
               }
             }
           }, 500);
@@ -1262,21 +1399,16 @@ form.on("submit", function (event) {
 
         let h = document.createElement("div");
         h.classList.add("scorename");
-        function getRandomNumber() {
-          return Math.floor(Math.random() * 9) + 1;
-        }
-        const randomNum = getRandomNumber();
-        h.innerText = randomNum;
+       
+        h.innerText = 0;
 
         playerDiv.appendChild(p); // Append the <p> element to playerDiv
         playerDiv.appendChild(h); // Append the <h1> element to playerDiv
 
         down.appendChild(playerDiv);
 
-        if (players === 2) {
-          playerDiv.style.backgroundColor = "rgb(253, 162, 20)";
-          h.style.color = "rgb(255, 255, 255)";
-          p.style.color = "rgb(255, 255, 255)";
+        if (players === currentplayer) {
+          playerDiv.classList.add("active-player");
         }
       }
     }
@@ -1301,20 +1433,10 @@ form.on("submit", function (event) {
     didit.append(diddown);
     winContainer.append(didit);
 
-    // loop for players and their scores
-    for (let i = 0; i < 4; i++) {
-      let elapse = document.createElement("div");
-      elapse.classList.add("elapse");
-      let elapsetitle = document.createElement("div");
-      elapsetitle.classList.add("elapsetitle");
-      elapsetitle.innerText = "Time Elapsed";
-      elapse.append(elapsetitle);
-      let elapsetime = document.createElement("div");
-      elapsetime.classList.add("elapsetitletime");
-      elapsetime.innerText = "1:52";
-      elapse.append(elapsetime);
-      winContainer.append(elapse);
-    }
+
+    let scoreDiv = document.createElement('div');
+    winContainer.append(scoreDiv);
+
 
     let winstarts = document.createElement("div");
     winstarts.classList.add("winstarts");
@@ -1363,6 +1485,7 @@ form.on("submit", function (event) {
     let down = document.createElement("div");
     let memoryDiv = document.createElement("div");
     let startsDiv = document.createElement("div");
+    startsDiv.classList.add('startDivDesktop');
     let restartButton = document.createElement("button");
     let restartB = restartButton.classList.add("restart");
     restartButton.addEventListener("click", function (event) {
@@ -1372,11 +1495,33 @@ form.on("submit", function (event) {
     let newgameButton = document.createElement("button");
     newgameButton.classList.add("newgame");
     newgameButton.innerText = "New Game";
+    newgameButton.addEventListener("click", function (event) {
+      location.reload();
+    });
+
+        // small screen
+        let startsDiv2 = document.createElement('div');
+        startsDiv2.classList.add('startsDiv2');
+        startsDiv2.innerText = "Menu";
+        let restart2 = document.createElement('li');
+        restart2.innerText = 'Restart';
+        restart2.addEventListener("click", function (event) {
+          alert("ssssssssssssssssssssssssss");
+        });
+        let newgame2 = document.createElement('li');
+        newgame2.innerText = 'New Game';
+        newgame2.addEventListener("click", function (event) {
+          location.reload();
+        });
+        startsDiv2.addEventListener("click", function (event) {
+          startsDiv2.append(restart2, newgame2);
+        });
+
     top.classList.add("top");
     middle.classList.add("fxfmiddle");
     down.classList.add("down");
     main1.classList.add("main1");
-    top.append(memoryDiv, startsDiv);
+    top.append(memoryDiv, startsDiv, startsDiv2);
     startsDiv.append(restartButton, newgameButton);
     let logo = document.createElement("img");
     logo.setAttribute("src", "./starter-code/assets/logo.svg");
@@ -1581,6 +1726,28 @@ form.on("submit", function (event) {
     let down = document.createElement("div");
     let memoryDiv = document.createElement("div");
     let startsDiv = document.createElement("div");
+    startsDiv.classList.add('startDivDesktop');
+
+    // small screen
+    let startsDiv2 = document.createElement('div');
+    startsDiv2.classList.add('startsDiv2');
+    startsDiv2.innerText = "Menu";
+    let restart2 = document.createElement('li');
+    restart2.innerText = 'Restart';
+    restart2.addEventListener("click", function (event) {
+      alert("ssssssssssssssssssssssssss");
+    });
+    let newgame2 = document.createElement('li');
+    newgame2.innerText = 'New Game';
+    newgame2.addEventListener("click", function (event) {
+      location.reload();
+    });
+    startsDiv2.addEventListener("click", function (event) {
+      startsDiv2.append(restart2, newgame2);
+    });
+
+
+
     let restartButton = document.createElement("button");
     let restartB = restartButton.classList.add("restart");
     restartButton.addEventListener("click", function (event) {
@@ -1590,11 +1757,14 @@ form.on("submit", function (event) {
     let newgameButton = document.createElement("button");
     newgameButton.classList.add("newgame");
     newgameButton.innerText = "New Game";
+    newgameButton.addEventListener("click", function (event) {
+      location.reload();
+    });
     top.classList.add("top");
     middle.classList.add("fxfmiddle");
     down.classList.add("down");
     main1.classList.add("main1");
-    top.append(memoryDiv, startsDiv);
+    top.append(memoryDiv, startsDiv, startsDiv2);
     startsDiv.append(restartButton, newgameButton);
     let logo = document.createElement("img");
     logo.setAttribute("src", "./starter-code/assets/logo.svg");
@@ -1632,17 +1802,20 @@ form.on("submit", function (event) {
         var isrunning = false;
 
         box.onclick = function () {
-          if (!isrunning) {
+
+        if (!isrunning) {
             isrunning = true;
             intervalId = setInterval(() => {
               time.innerText = "00:" + sec.toString().padStart(2, "0");
+              elapsetime.innerText = "00:" + sec.toString().padStart(2, "0");
               sec++;
             }, 1000);
           }
-
           numberOfMoves += 0.5;
           moves.innerText = Math.floor(numberOfMoves);
-          console.log(numberOfMoves);
+          movestaken_time.innerText = numberOfMoves + "Moves";
+
+
           this.classList.add("boxOpen");
           setTimeout(function () {
             if (document.querySelectorAll(".boxOpen").length > 1) {
@@ -1701,6 +1874,7 @@ form.on("submit", function (event) {
 
     let time = document.createElement("div");
     time.classList.add("time");
+    time.innerHTML = '0:00';
 
     timeDiv.append(timetitle);
     timeDiv.append(time);
@@ -1714,6 +1888,7 @@ form.on("submit", function (event) {
 
     let moves = document.createElement("div");
     moves.classList.add("moves");
+    moves.innerHTML = '0';
 
     movesDiv.append(movestitle);
     movesDiv.append(moves);
@@ -1742,7 +1917,6 @@ form.on("submit", function (event) {
     elapse.append(elapsetitle);
     let elapsetime = document.createElement("div");
     elapsetime.classList.add("elapsetitletime");
-    elapsetime.innerText = "1:52";
     elapse.append(elapsetime);
 
     let movestaken = document.createElement("div");
@@ -1753,7 +1927,6 @@ form.on("submit", function (event) {
     movestaken.append(movestaken_title);
     let movestaken_time = document.createElement("div");
     movestaken_time.classList.add("movestaken_time");
-    movestaken_time.innerText = "72 Moves";
     movestaken.append(movestaken_time);
 
     let winstarts = document.createElement("div");
