@@ -12,9 +12,9 @@ var main = $(".main-container");
 var overall = $(".overall");
 var restart = $(".restart");
 var newgame = $(".newgame");
-let playercount=[0,0,0,0];
-let currentplayer=1;
-let numberOfPlayers=0;
+let playercount = [0, 0, 0, 0];
+let currentplayer = 1;
+let numberOfPlayers = 0;
 
 form.on("submit", function (event) {
   event.preventDefault();
@@ -23,7 +23,7 @@ form.on("submit", function (event) {
   if (numbers.is(":checked") && fxf.is(":checked") && !player1.is(":checked")) {
     if (player4.is(":checked")) {
       numberOfPlayers = 4;
-    } else if (player3.is( ":checked")) {
+    } else if (player3.is(":checked")) {
       numberOfPlayers = 3;
     } else if (player2.is(":checked")) {
       numberOfPlayers = 2;
@@ -76,12 +76,12 @@ form.on("submit", function (event) {
         "7",
         "8",
       ];
-    // FUNCTION TO SWITCH BETWEEN PLAYERS
-    function switchplayer(){
-      document.querySelector('.playersdown.active-player').classList.remove('active-player');
-      currentplayer = (currentplayer % numberOfPlayers) + 1;
-      document.querySelector('.playersdown:nth-child(' + currentplayer + ')').classList.add('active-player');
-    }
+      // FUNCTION TO SWITCH BETWEEN PLAYERS
+      function switchplayer() {
+        document.querySelector('.playersdown.active-player').classList.remove('active-player');
+        currentplayer = (currentplayer % numberOfPlayers) + 1;
+        document.querySelector('.playersdown:nth-child(' + currentplayer + ')').classList.add('active-player');
+      }
 
       var shuf_numbers = numbers.sort(() => (Math.random() > 0.5 ? 2 : -1));
       for (var i = 0; i < numbers.length; i++) {
@@ -112,9 +112,9 @@ form.on("submit", function (event) {
                   .classList.remove("boxOpen");
                 const playerwinCount = document.querySelector('.playersdown.active-player .scorename');
 
-                  playercount[currentplayer - 1]++;
+                playercount[currentplayer - 1]++;
 
-                  playerwinCount.textContent = playercount[currentplayer - 1];
+                playerwinCount.textContent = playercount[currentplayer - 1];
 
                 if (
                   document.querySelectorAll(".boxMatch").length ==
@@ -125,7 +125,7 @@ form.on("submit", function (event) {
                     elapse.classList.add("elapse");
                     let elapsetitle = document.createElement("div");
                     elapsetitle.classList.add("elapsetitle");
-                    elapsetitle.innerText = "Player " + (i+1);
+                    elapsetitle.innerText = "Player " + (i + 1);
                     elapse.append(elapsetitle);
                     let elapsetime = document.createElement("div");
                     elapsetime.classList.add("elapsetitletime");
@@ -142,17 +142,17 @@ form.on("submit", function (event) {
                   winContainer.style.marginTop = "-37rem";
                 }
               } else {
-                
+
                 document
                   .querySelectorAll(".boxOpen")[1]
                   .classList.remove("boxOpen");
                 document
                   .querySelectorAll(".boxOpen")[0]
                   .classList.remove("boxOpen");
-                  switchplayer();
+                switchplayer();
               }
             }
-           
+
           }, 500);
         };
 
@@ -172,7 +172,7 @@ form.on("submit", function (event) {
 
         let h = document.createElement("div");
         h.classList.add("scorename");
-       
+
         h.innerText = playercount[1];
 
         playerDiv.appendChild(p); // Append the <p> element to playerDiv
@@ -239,6 +239,7 @@ form.on("submit", function (event) {
     let down = document.createElement("div");
     let memoryDiv = document.createElement("div");
     let startsDiv = document.createElement("div");
+    startsDiv.classList.add('startDivDesktop');
     let restartButton = document.createElement("button");
     let restartB = restartButton.classList.add("restart");
     restartButton.addEventListener("click", function (event) {
@@ -248,12 +249,30 @@ form.on("submit", function (event) {
     let newgameButton = document.createElement("button");
     newgameButton.classList.add("newgame");
     newgameButton.innerText = "New Game";
-    s
+
+    // small screen
+    let startsDiv2 = document.createElement('div');
+    startsDiv2.classList.add('startsDiv2');
+    startsDiv2.innerText = "Menu";
+    let restart2 = document.createElement('li');
+    restart2.innerText = 'Restart';
+    restart2.addEventListener("click", function (event) {
+      alert("ssssssssssssssssssssssssss");
+    });
+    let newgame2 = document.createElement('li');
+    newgame2.innerText = 'New Game';
+    newgame2.addEventListener("click", function (event) {
+      location.reload();
+    });
+    startsDiv2.addEventListener("click", function (event) {
+      startsDiv2.append(restart2, newgame2);
+    });
+
     top.classList.add("top");
     middle.classList.add("sxsmiddle");
     down.classList.add("down");
     main1.classList.add("main1");
-    top.append(memoryDiv, startsDiv);
+    top.append(memoryDiv, startsDiv, startsDiv2);
     startsDiv.append(restartButton, newgameButton);
     let logo = document.createElement("img");
     logo.setAttribute("src", "./starter-code/assets/logo.svg");
@@ -299,12 +318,12 @@ form.on("submit", function (event) {
         "17",
         "18",
       ];
-          // FUNCTION TO SWITCH BETWEEN PLAYERS
-    function switchplayer(){
-      document.querySelector('.playersdown.active-player').classList.remove('active-player');
-      currentplayer = (currentplayer % numberOfPlayers) + 1;
-      document.querySelector('.playersdown:nth-child(' + currentplayer + ')').classList.add('active-player');
-    }
+      // FUNCTION TO SWITCH BETWEEN PLAYERS
+      function switchplayer() {
+        document.querySelector('.playersdown.active-player').classList.remove('active-player');
+        currentplayer = (currentplayer % numberOfPlayers) + 1;
+        document.querySelector('.playersdown:nth-child(' + currentplayer + ')').classList.add('active-player');
+      }
 
       var shuf_numbers = numbers.sort(() => (Math.random() > 0.5 ? 2 : -1));
       for (var i = 0; i < numbers.length; i++) {
@@ -334,9 +353,9 @@ form.on("submit", function (event) {
                   .querySelectorAll(".boxOpen")[0]
                   .classList.remove("boxOpen");
 
-                  const playerwinCount = document.querySelector('.playersdown.active-player .scorename');
-                  playercount[currentplayer - 1]++;
-                  playerwinCount.textContent = playercount[currentplayer - 1];
+                const playerwinCount = document.querySelector('.playersdown.active-player .scorename');
+                playercount[currentplayer - 1]++;
+                playerwinCount.textContent = playercount[currentplayer - 1];
 
                 if (
                   document.querySelectorAll(".boxMatch").length ==
@@ -347,7 +366,7 @@ form.on("submit", function (event) {
                     elapse.classList.add("elapse");
                     let elapsetitle = document.createElement("div");
                     elapsetitle.classList.add("elapsetitle");
-                    elapsetitle.innerText = "Player " + (i+1);
+                    elapsetitle.innerText = "Player " + (i + 1);
                     elapse.append(elapsetitle);
                     let elapsetime = document.createElement("div");
                     elapsetime.classList.add("elapsetitletime");
@@ -370,7 +389,7 @@ form.on("submit", function (event) {
                 document
                   .querySelectorAll(".boxOpen")[0]
                   .classList.remove("boxOpen");
-                  switchplayer();
+                switchplayer();
               }
             }
           }, 500);
@@ -392,7 +411,7 @@ form.on("submit", function (event) {
 
         let h = document.createElement("div");
         h.classList.add("scorename");
-       
+
         h.innerText = playercount[1];
 
 
@@ -581,17 +600,17 @@ form.on("submit", function (event) {
                   document.querySelectorAll(".boxMatch").length ==
                   numbers.length
                 ) {
-                        // WHEN ALL BOXES ARE OPENED;
-                        winContainer.style.display = "block";
-                        main1.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-                        main1.style.backdropFilter = "blur(5px)";
-                        winContainer.style.marginTop = "-37rem";
-                        main1.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-                        main1.style.backdropFilter = "blur(5px)";
-                        winContainer.style.marginTop = "-37rem";
-                        clearInterval(intervalId);
-                        isrunning = false;                
-                      }
+                  // WHEN ALL BOXES ARE OPENED;
+                  winContainer.style.display = "block";
+                  main1.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+                  main1.style.backdropFilter = "blur(5px)";
+                  winContainer.style.marginTop = "-37rem";
+                  main1.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+                  main1.style.backdropFilter = "blur(5px)";
+                  winContainer.style.marginTop = "-37rem";
+                  clearInterval(intervalId);
+                  isrunning = false;
+                }
               } else {
                 document
                   .querySelectorAll(".boxOpen")[1]
@@ -640,54 +659,54 @@ form.on("submit", function (event) {
     down.appendChild(timeDiv); // Add timeDiv to "down" element
     down.appendChild(movesDiv); // Add movesDiv to "down" element
 
-        // START:: Result
-        let winContainer = document.createElement("div");
-        winContainer.classList.add("wincontainer");
-        let didit = document.createElement("div");
-        let didtop = document.createElement("div");
-        didtop.classList.add("didtop");
-        didtop.innerText = "YOU DID IT";
-        let diddown = document.createElement("div");
-        diddown.classList.add("diddown");
-        diddown.innerText = 'Game over! Here"s how you got on...';
-        didit.append(didtop);
-        didit.append(diddown);
-    
-        let elapse = document.createElement("div");
-        elapse.classList.add("elapse");
-        let elapsetitle = document.createElement("div");
-        elapsetitle.classList.add("elapsetitle");
-        elapsetitle.innerText = "Time Elapsed";
-        elapse.append(elapsetitle);
-        let elapsetime = document.createElement("div");
-        elapsetime.classList.add("elapsetitletime");
-        elapsetime.innerText = "1:52";
-        elapse.append(elapsetime);
-    
-        let movestaken = document.createElement("div");
-        movestaken.classList.add("movestaken");
-        let movestaken_title = document.createElement("div");
-        movestaken_title.classList.add("movestaken_time");
-        movestaken.innerText = "Moves Taken";
-        movestaken.append(movestaken_title);
-        let movestaken_time = document.createElement("div");
-        movestaken_time.classList.add("movestaken_time");
-        movestaken_time.innerText = "72 Moves";
-        movestaken.append(movestaken_time);
-    
-        let winstarts = document.createElement("div");
-        winstarts.classList.add("winstarts");
-        let winrestart = document.createElement("div");
-        winrestart.classList.add("winrestart");
-        winrestart.innerText = "Restart";
-        winstarts.append(winrestart);
-        let winsetup = document.createElement("div");
-        winsetup.classList.add("winsetup");
-        winsetup.innerText = "Setup New Game";
-        winstarts.append(winsetup);
-    
-        winContainer.append(didit, elapse, movestaken, winstarts);
-        // END:: Result
+    // START:: Result
+    let winContainer = document.createElement("div");
+    winContainer.classList.add("wincontainer");
+    let didit = document.createElement("div");
+    let didtop = document.createElement("div");
+    didtop.classList.add("didtop");
+    didtop.innerText = "YOU DID IT";
+    let diddown = document.createElement("div");
+    diddown.classList.add("diddown");
+    diddown.innerText = 'Game over! Here"s how you got on...';
+    didit.append(didtop);
+    didit.append(diddown);
+
+    let elapse = document.createElement("div");
+    elapse.classList.add("elapse");
+    let elapsetitle = document.createElement("div");
+    elapsetitle.classList.add("elapsetitle");
+    elapsetitle.innerText = "Time Elapsed";
+    elapse.append(elapsetitle);
+    let elapsetime = document.createElement("div");
+    elapsetime.classList.add("elapsetitletime");
+    elapsetime.innerText = "1:52";
+    elapse.append(elapsetime);
+
+    let movestaken = document.createElement("div");
+    movestaken.classList.add("movestaken");
+    let movestaken_title = document.createElement("div");
+    movestaken_title.classList.add("movestaken_time");
+    movestaken.innerText = "Moves Taken";
+    movestaken.append(movestaken_title);
+    let movestaken_time = document.createElement("div");
+    movestaken_time.classList.add("movestaken_time");
+    movestaken_time.innerText = "72 Moves";
+    movestaken.append(movestaken_time);
+
+    let winstarts = document.createElement("div");
+    winstarts.classList.add("winstarts");
+    let winrestart = document.createElement("div");
+    winrestart.classList.add("winrestart");
+    winrestart.innerText = "Restart";
+    winstarts.append(winrestart);
+    let winsetup = document.createElement("div");
+    winsetup.classList.add("winsetup");
+    winsetup.innerText = "Setup New Game";
+    winstarts.append(winsetup);
+
+    winContainer.append(didit, elapse, movestaken, winstarts);
+    // END:: Result
     // Remove existing content from the "main" element
     overall.empty();
 
@@ -734,23 +753,23 @@ form.on("submit", function (event) {
       location.reload();
     });
 
-        // small screen
-        let startsDiv2 = document.createElement('div');
-        startsDiv2.classList.add('startsDiv2');
-        startsDiv2.innerText = "Menu";
-        let restart2 = document.createElement('li');
-        restart2.innerText = 'Restart';
-        restart2.addEventListener("click", function (event) {
-          alert("ssssssssssssssssssssssssss");
-        });
-        let newgame2 = document.createElement('li');
-        newgame2.innerText = 'New Game';
-        newgame2.addEventListener("click", function (event) {
-          location.reload();
-        });
-        startsDiv2.addEventListener("click", function (event) {
-          startsDiv2.append(restart2, newgame2);
-        });
+    // small screen
+    let startsDiv2 = document.createElement('div');
+    startsDiv2.classList.add('startsDiv2');
+    startsDiv2.innerText = "Menu";
+    let restart2 = document.createElement('li');
+    restart2.innerText = 'Restart';
+    restart2.addEventListener("click", function (event) {
+      alert("ssssssssssssssssssssssssss");
+    });
+    let newgame2 = document.createElement('li');
+    newgame2.innerText = 'New Game';
+    newgame2.addEventListener("click", function (event) {
+      location.reload();
+    });
+    startsDiv2.addEventListener("click", function (event) {
+      startsDiv2.append(restart2, newgame2);
+    });
 
     top.classList.add("top");
     middle.classList.add("sxsmiddle");
@@ -802,12 +821,12 @@ form.on("submit", function (event) {
         "wifi",
         "euro-sign",
       ];
-                // FUNCTION TO SWITCH BETWEEN PLAYERS
-    function switchplayer(){
-      document.querySelector('.playersdown.active-player').classList.remove('active-player');
-      currentplayer = (currentplayer % numberOfPlayers) + 1;
-      document.querySelector('.playersdown:nth-child(' + currentplayer + ')').classList.add('active-player');
-    }
+      // FUNCTION TO SWITCH BETWEEN PLAYERS
+      function switchplayer() {
+        document.querySelector('.playersdown.active-player').classList.remove('active-player');
+        currentplayer = (currentplayer % numberOfPlayers) + 1;
+        document.querySelector('.playersdown:nth-child(' + currentplayer + ')').classList.add('active-player');
+      }
 
       var shuf_numbers = numbers.sort(() => (Math.random() > 0.5 ? 2 : -1));
       for (var i = 0; i < numbers.length; i++) {
@@ -838,10 +857,10 @@ form.on("submit", function (event) {
                   .querySelectorAll(".boxOpen")[0]
                   .classList.remove("boxOpen");
 
-                  // display count for the player
-                  const playerwinCount = document.querySelector('.playersdown.active-player .scorename');
-                  playercount[currentplayer - 1]++;
-                  playerwinCount.textContent = playercount[currentplayer - 1];
+                // display count for the player
+                const playerwinCount = document.querySelector('.playersdown.active-player .scorename');
+                playercount[currentplayer - 1]++;
+                playerwinCount.textContent = playercount[currentplayer - 1];
 
                 if (
                   document.querySelectorAll(".boxMatch").length ==
@@ -852,7 +871,7 @@ form.on("submit", function (event) {
                     elapse.classList.add("elapse");
                     let elapsetitle = document.createElement("div");
                     elapsetitle.classList.add("elapsetitle");
-                    elapsetitle.innerText = "Player " + (i+1);
+                    elapsetitle.innerText = "Player " + (i + 1);
                     elapse.append(elapsetitle);
                     let elapsetime = document.createElement("div");
                     elapsetime.classList.add("elapsetitletime");
@@ -877,7 +896,7 @@ form.on("submit", function (event) {
                 document
                   .querySelectorAll(".boxOpen")[0]
                   .classList.remove("boxOpen");
-                  switchplayer();
+                switchplayer();
               }
             }
           }, 500);
@@ -899,7 +918,7 @@ form.on("submit", function (event) {
 
         let h = document.createElement("div");
         h.classList.add("scorename");
-  
+
         h.innerText = 0;
 
         playerDiv.appendChild(p); // Append the <p> element to playerDiv
@@ -907,7 +926,7 @@ form.on("submit", function (event) {
 
         down.appendChild(playerDiv);
 
-       if (players === currentplayer) {
+        if (players === currentplayer) {
           playerDiv.classList.add("active-player");
         }
       }
@@ -993,31 +1012,31 @@ form.on("submit", function (event) {
       location.reload();
     });
 
-          // small screen
-          let startsDiv2 = document.createElement('div');
-          startsDiv2.classList.add('startsDiv2');
-          startsDiv2.innerText = "Menu";
-          let restart2 = document.createElement('li');
-          restart2.innerText = 'Restart';
-          restart2.addEventListener("click", function (event) {
-            alert("ssssssssssssssssssssssssss");
-          });
-          let newgame2 = document.createElement('li');
-          newgame2.innerText = 'New Game';
-          newgame2.addEventListener("click", function (event) {
-            location.reload();
-          });
-          startsDiv2.addEventListener("click", function (event) {
-            startsDiv2.append(restart2, newgame2);
-          });
-  
+    // small screen
+    let startsDiv2 = document.createElement('div');
+    startsDiv2.classList.add('startsDiv2');
+    startsDiv2.innerText = "Menu";
+    let restart2 = document.createElement('li');
+    restart2.innerText = 'Restart';
+    restart2.addEventListener("click", function (event) {
+      alert("ssssssssssssssssssssssssss");
+    });
+    let newgame2 = document.createElement('li');
+    newgame2.innerText = 'New Game';
+    newgame2.addEventListener("click", function (event) {
+      location.reload();
+    });
+    startsDiv2.addEventListener("click", function (event) {
+      startsDiv2.append(restart2, newgame2);
+    });
+
 
 
     top.classList.add("top");
     middle.classList.add("sxsmiddle");
     down.classList.add("down");
     main1.classList.add("main1");
-    top.append(memoryDiv, startsDiv ,startsDiv2);
+    top.append(memoryDiv, startsDiv, startsDiv2);
     startsDiv.append(restartButton, newgameButton);
     let logo = document.createElement("img");
     logo.setAttribute("src", "./starter-code/assets/logo.svg");
@@ -1155,54 +1174,54 @@ form.on("submit", function (event) {
     down.appendChild(timeDiv); // Add timeDiv to "down" element
     down.appendChild(movesDiv); // Add movesDiv to "down" element
 
-        // START:: Result
-        let winContainer = document.createElement("div");
-        winContainer.classList.add("wincontainer");
-        let didit = document.createElement("div");
-        let didtop = document.createElement("div");
-        didtop.classList.add("didtop");
-        didtop.innerText = "YOU DID IT";
-        let diddown = document.createElement("div");
-        diddown.classList.add("diddown");
-        diddown.innerText = 'Game over! Here"s how you got on...';
-        didit.append(didtop);
-        didit.append(diddown);
-    
-        let elapse = document.createElement("div");
-        elapse.classList.add("elapse");
-        let elapsetitle = document.createElement("div");
-        elapsetitle.classList.add("elapsetitle");
-        elapsetitle.innerText = "Time Elapsed";
-        elapse.append(elapsetitle);
-        let elapsetime = document.createElement("div");
-        elapsetime.classList.add("elapsetitletime");
-        elapsetime.innerText = "1:52";
-        elapse.append(elapsetime);
-    
-        let movestaken = document.createElement("div");
-        movestaken.classList.add("movestaken");
-        let movestaken_title = document.createElement("div");
-        movestaken_title.classList.add("movestaken_time");
-        movestaken.innerText = "Moves Taken";
-        movestaken.append(movestaken_title);
-        let movestaken_time = document.createElement("div");
-        movestaken_time.classList.add("movestaken_time");
-        movestaken_time.innerText = "72 Moves";
-        movestaken.append(movestaken_time);
-    
-        let winstarts = document.createElement("div");
-        winstarts.classList.add("winstarts");
-        let winrestart = document.createElement("div");
-        winrestart.classList.add("winrestart");
-        winrestart.innerText = "Restart";
-        winstarts.append(winrestart);
-        let winsetup = document.createElement("div");
-        winsetup.classList.add("winsetup");
-        winsetup.innerText = "Setup New Game";
-        winstarts.append(winsetup);
-    
-        winContainer.append(didit, elapse, movestaken, winstarts);
-        // END:: Result
+    // START:: Result
+    let winContainer = document.createElement("div");
+    winContainer.classList.add("wincontainer");
+    let didit = document.createElement("div");
+    let didtop = document.createElement("div");
+    didtop.classList.add("didtop");
+    didtop.innerText = "YOU DID IT";
+    let diddown = document.createElement("div");
+    diddown.classList.add("diddown");
+    diddown.innerText = 'Game over! Here"s how you got on...';
+    didit.append(didtop);
+    didit.append(diddown);
+
+    let elapse = document.createElement("div");
+    elapse.classList.add("elapse");
+    let elapsetitle = document.createElement("div");
+    elapsetitle.classList.add("elapsetitle");
+    elapsetitle.innerText = "Time Elapsed";
+    elapse.append(elapsetitle);
+    let elapsetime = document.createElement("div");
+    elapsetime.classList.add("elapsetitletime");
+    elapsetime.innerText = "1:52";
+    elapse.append(elapsetime);
+
+    let movestaken = document.createElement("div");
+    movestaken.classList.add("movestaken");
+    let movestaken_title = document.createElement("div");
+    movestaken_title.classList.add("movestaken_time");
+    movestaken.innerText = "Moves Taken";
+    movestaken.append(movestaken_title);
+    let movestaken_time = document.createElement("div");
+    movestaken_time.classList.add("movestaken_time");
+    movestaken_time.innerText = "72 Moves";
+    movestaken.append(movestaken_time);
+
+    let winstarts = document.createElement("div");
+    winstarts.classList.add("winstarts");
+    let winrestart = document.createElement("div");
+    winrestart.classList.add("winrestart");
+    winrestart.innerText = "Restart";
+    winstarts.append(winrestart);
+    let winsetup = document.createElement("div");
+    winsetup.classList.add("winsetup");
+    winsetup.innerText = "Setup New Game";
+    winstarts.append(winsetup);
+
+    winContainer.append(didit, elapse, movestaken, winstarts);
+    // END:: Result
     // Remove existing content from the "main" element
     overall.empty();
 
@@ -1249,23 +1268,23 @@ form.on("submit", function (event) {
       location.reload();
     });
 
-        // small screen
-        let startsDiv2 = document.createElement('div');
-        startsDiv2.classList.add('startsDiv2');
-        startsDiv2.innerText = "Menu";
-        let restart2 = document.createElement('li');
-        restart2.innerText = 'Restart';
-        restart2.addEventListener("click", function (event) {
-          alert("ssssssssssssssssssssssssss");
-        });
-        let newgame2 = document.createElement('li');
-        newgame2.innerText = 'New Game';
-        newgame2.addEventListener("click", function (event) {
-          location.reload();
-        });
-        startsDiv2.addEventListener("click", function (event) {
-          startsDiv2.append(restart2, newgame2);
-        });
+    // small screen
+    let startsDiv2 = document.createElement('div');
+    startsDiv2.classList.add('startsDiv2');
+    startsDiv2.innerText = "Menu";
+    let restart2 = document.createElement('li');
+    restart2.innerText = 'Restart';
+    restart2.addEventListener("click", function (event) {
+      alert("ssssssssssssssssssssssssss");
+    });
+    let newgame2 = document.createElement('li');
+    newgame2.innerText = 'New Game';
+    newgame2.addEventListener("click", function (event) {
+      location.reload();
+    });
+    startsDiv2.addEventListener("click", function (event) {
+      startsDiv2.append(restart2, newgame2);
+    });
 
     top.classList.add("top");
     middle.classList.add("fxfmiddle");
@@ -1298,13 +1317,13 @@ form.on("submit", function (event) {
         "random",
         "apple-alt",
       ];
-                    // FUNCTION TO SWITCH BETWEEN PLAYERS
-    function switchplayer(){
-      document.querySelector('.playersdown.active-player').classList.remove('active-player');
-      currentplayer = (currentplayer % numberOfPlayers) + 1;
-      document.querySelector('.playersdown:nth-child(' + currentplayer + ')').classList.add('active-player');
-    }
-    
+      // FUNCTION TO SWITCH BETWEEN PLAYERS
+      function switchplayer() {
+        document.querySelector('.playersdown.active-player').classList.remove('active-player');
+        currentplayer = (currentplayer % numberOfPlayers) + 1;
+        document.querySelector('.playersdown:nth-child(' + currentplayer + ')').classList.add('active-player');
+      }
+
       var shuf_numbers = numbers.sort(() => (Math.random() > 0.5 ? 2 : -1));
       for (var i = 0; i < numbers.length; i++) {
         let box = document.createElement("div");
@@ -1334,10 +1353,10 @@ form.on("submit", function (event) {
                   .querySelectorAll(".boxOpen")[0]
                   .classList.remove("boxOpen");
 
-                  // display count for the player
-                  const playerwinCount = document.querySelector('.playersdown.active-player .scorename');
-                  playercount[currentplayer - 1]++;
-                  playerwinCount.textContent = playercount[currentplayer - 1];
+                // display count for the player
+                const playerwinCount = document.querySelector('.playersdown.active-player .scorename');
+                playercount[currentplayer - 1]++;
+                playerwinCount.textContent = playercount[currentplayer - 1];
 
 
 
@@ -1351,7 +1370,7 @@ form.on("submit", function (event) {
                     elapse.classList.add("elapse");
                     let elapsetitle = document.createElement("div");
                     elapsetitle.classList.add("elapsetitle");
-                    elapsetitle.innerText = "Player " + (i+1);
+                    elapsetitle.innerText = "Player " + (i + 1);
                     elapse.append(elapsetitle);
                     let elapsetime = document.createElement("div");
                     elapsetime.classList.add("elapsetitletime");
@@ -1377,7 +1396,7 @@ form.on("submit", function (event) {
                 document
                   .querySelectorAll(".boxOpen")[0]
                   .classList.remove("boxOpen");
-                  switchplayer();
+                switchplayer();
               }
             }
           }, 500);
@@ -1399,7 +1418,7 @@ form.on("submit", function (event) {
 
         let h = document.createElement("div");
         h.classList.add("scorename");
-       
+
         h.innerText = 0;
 
         playerDiv.appendChild(p); // Append the <p> element to playerDiv
@@ -1499,23 +1518,23 @@ form.on("submit", function (event) {
       location.reload();
     });
 
-        // small screen
-        let startsDiv2 = document.createElement('div');
-        startsDiv2.classList.add('startsDiv2');
-        startsDiv2.innerText = "Menu";
-        let restart2 = document.createElement('li');
-        restart2.innerText = 'Restart';
-        restart2.addEventListener("click", function (event) {
-          alert("ssssssssssssssssssssssssss");
-        });
-        let newgame2 = document.createElement('li');
-        newgame2.innerText = 'New Game';
-        newgame2.addEventListener("click", function (event) {
-          location.reload();
-        });
-        startsDiv2.addEventListener("click", function (event) {
-          startsDiv2.append(restart2, newgame2);
-        });
+    // small screen
+    let startsDiv2 = document.createElement('div');
+    startsDiv2.classList.add('startsDiv2');
+    startsDiv2.innerText = "Menu";
+    let restart2 = document.createElement('li');
+    restart2.innerText = 'Restart';
+    restart2.addEventListener("click", function (event) {
+      alert("ssssssssssssssssssssssssss");
+    });
+    let newgame2 = document.createElement('li');
+    newgame2.innerText = 'New Game';
+    newgame2.addEventListener("click", function (event) {
+      location.reload();
+    });
+    startsDiv2.addEventListener("click", function (event) {
+      startsDiv2.append(restart2, newgame2);
+    });
 
     top.classList.add("top");
     middle.classList.add("fxfmiddle");
@@ -1803,7 +1822,7 @@ form.on("submit", function (event) {
 
         box.onclick = function () {
 
-        if (!isrunning) {
+          if (!isrunning) {
             isrunning = true;
             intervalId = setInterval(() => {
               time.innerText = "00:" + sec.toString().padStart(2, "0");
