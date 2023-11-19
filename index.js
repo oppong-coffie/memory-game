@@ -225,6 +225,8 @@ event.preventDefault();
   
     overall.appendChild(winContainer);
   }
+    // END:: Numbers, multiple users and 4x4 grid checked
+
   
 
     // START:: Numbers, multiple users and 6x6 grid checked
@@ -450,6 +452,9 @@ event.preventDefault();
     let winsetup = document.createElement("div");
     winsetup.classList.add("winsetup");
     winsetup.innerText = "Setup New Game";
+    winsetup.addEventListener("click", function (event) {
+      location.reload();
+  });
     winstarts.appendChild(winsetup);
 
     winContainer.appendChild(winstarts);
@@ -464,6 +469,8 @@ event.preventDefault();
 
     overall.appendChild(winContainer);
   }
+      // END:: Numbers, multiple users and 6x6 grid checked
+
 
     // START:: Numbers, 1 users and 6x6 grid checked
     else if (numbers.checked && sxs.checked && player1.checked) {
@@ -626,7 +633,8 @@ event.preventDefault();
                               document
                                   .querySelectorAll(".boxOpen")[0]
                                   .classList.remove("boxOpen");
-  
+
+                            // when all boxes are opened
                               if (
                                   document.querySelectorAll(".boxMatch").length ==
                                   numbers.length
@@ -634,7 +642,7 @@ event.preventDefault();
                                   winContainer.style.display = "block";
                                   main1.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
                                   main1.style.backdropFilter = "blur(5px)";
-                                  winContainer.style.marginTop = "-37rem";
+                                  winContainer.style.marginTop = "-35rem";
                                   clearInterval(intervalId);
                                   isrunning = false;
                               }
@@ -730,6 +738,9 @@ event.preventDefault();
       var winsetup = document.createElement("div");
       winsetup.classList.add("winsetup");
       winsetup.innerText = "Setup New Game";
+      winsetup.addEventListener("click", function (event) {
+        location.reload();
+    });
       winstarts.append(winsetup);
   
       winContainer.append(didit, elapse, movestaken, winstarts);
@@ -742,6 +753,8 @@ event.preventDefault();
       main1.append(top, middle, down);
       overall.append(winContainer);
   }
+      // END:: Numbers, 1 users and 6x6 grid checked
+
   
   
 
@@ -971,10 +984,30 @@ event.preventDefault();
       let winrestart = document.createElement("div");
       winrestart.classList.add("winrestart");
       winrestart.innerText = "Restart";
+      winrestart.addEventListener("click", function (event) {
+        document.querySelector('.playersdown.active-player').classList.remove('active-player');
+        currentplayer = 1;
+        document.querySelector('.playersdown:nth-child(' + currentplayer + ')').classList.add('active-player');
+        playercount[0] = 0;
+        playercount[1] = 0;
+        playercount[2] = 0;
+        playercount[3] = 0;
+        const playerwinCount = document.querySelectorAll('.scorename');
+        playerwinCount.forEach(function (element) {
+            element.textContent = 0;
+        });
+        document.querySelectorAll(".sxsitem").forEach(function (element) {
+            element.classList.remove("boxMatch");
+            element.classList.remove("boxOpen");
+        });
+    });
       winstarts.append(winrestart);
       let winsetup = document.createElement("div");
       winsetup.classList.add("winsetup");
       winsetup.innerText = "Setup New Game";
+      winsetup.addEventListener("click", function (event) {
+        location.reload();
+    });
       winstarts.append(winsetup);
   
       winContainer.append(winstarts);
@@ -988,9 +1021,10 @@ event.preventDefault();
       main1.append(top, middle, down, currentDiv);
       overall.append(winContainer);
   }
+      // END:: icons, multiple users and 6x6 grid checked
+
   
 
-   
 
 
       // START:: Icons, 1 user and 6x6 grid checkedssw
@@ -1136,7 +1170,7 @@ event.preventDefault();
                                     winContainer.style.marginTop = "-37rem";
                                     main1.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
                                     main1.style.backdropFilter = "blur(5px)";
-                                    winContainer.style.marginTop = "-37rem";
+                                    winContainer.style.marginTop = "-35rem";
                                     clearInterval(intervalId);
                                     isrunning = false;
                                 }
@@ -1228,10 +1262,24 @@ event.preventDefault();
         let winrestart = document.createElement("div");
         winrestart.classList.add("winrestart");
         winrestart.innerText = "Restart";
+        winrestart.addEventListener("click", function (event) {
+          numberOfMoves = 0;
+          moves.innerText = numberOfMoves;
+          sec = 0;
+          clearInterval(intervalId);
+          isrunning = false;
+          time.innerText = "00:" + sec.toString().padStart(2, "0");
+          document.querySelectorAll(".sxsitem").forEach(function (element) {
+              element.classList.remove("boxMatch");
+          });
+      });
         winstarts.append(winrestart);
         let winsetup = document.createElement("div");
         winsetup.classList.add("winsetup");
         winsetup.innerText = "Setup New Game";
+        winsetup.addEventListener("click", function (event) {
+          location.reload();
+      });
         winstarts.append(winsetup);
     
         winContainer.append(didit, elapse, movestaken, winstarts);
@@ -1244,6 +1292,8 @@ event.preventDefault();
         main1.append(top, middle, down);
         overall.append(winContainer);
     }
+          // START:: Icons, 1 user and 6x6 grid checkedssw
+
 
 
 
@@ -1381,7 +1431,7 @@ event.preventDefault();
                                     winContainer.style.display = "block";
                                     main1.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
                                     main1.style.backdropFilter = "blur(5px)";
-                                    winContainer.style.marginTop = "-37rem";
+                                    winContainer.style.marginTop = "-33rem";
                                     clearInterval(intervalId);
                                     isrunning = false;
                                 }
@@ -1471,10 +1521,24 @@ event.preventDefault();
         let winrestart = document.createElement("div");
         winrestart.classList.add("winrestart");
         winrestart.innerText = "Restart";
+        winrestart.addEventListener("click", function (event) {
+          numberOfMoves = 0;
+          moves.innerText = numberOfMoves;
+          sec = 0;
+          clearInterval(intervalId);
+          isrunning = false;
+          time.innerText = "00:" + sec.toString().padStart(2, "0");
+          document.querySelectorAll(".item").forEach(function (element) {
+              element.classList.remove("boxMatch");
+          });
+      });
         winstarts.append(winrestart);
         let winsetup = document.createElement("div");
         winsetup.classList.add("winsetup");
         winsetup.innerText = "Setup New Game";
+        winsetup.addEventListener("click", function (event) {
+          location.reload();
+      });
         winstarts.append(winsetup);
     
         winContainer.append(didit, elapse, movestaken, winstarts);
@@ -1487,6 +1551,7 @@ event.preventDefault();
         main1.append(top, middle, down);
         overall.append(winContainer);
     }
+      // END:: Numbers, 1 users and 4x4 grid checked
 
 
 
@@ -1633,7 +1698,7 @@ event.preventDefault();
                                     winContainer.style.display = "block";
                                     main1.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
                                     main1.style.backdropFilter = "blur(5px)";
-                                    winContainer.style.marginTop = "-37rem";
+                                    winContainer.style.marginTop = "-33rem";
                                     clearInterval(intervalId);
                                     isrunning = false;
                                 }
@@ -1727,10 +1792,24 @@ event.preventDefault();
         let winrestart = document.createElement("div");
         winrestart.classList.add("winrestart");
         winrestart.innerText = "Restart";
+        winrestart.addEventListener("click", function (event) {
+          numberOfMoves = 0;
+          moves.innerText = numberOfMoves;
+          sec = 0;
+          clearInterval(intervalId);
+          isrunning = false;
+          time.innerText = "00:" + sec.toString().padStart(2, "0");
+          document.querySelectorAll(".item").forEach(function (element) {
+              element.classList.remove("boxMatch");
+          });
+      });
         winstarts.append(winrestart);
         let winsetup = document.createElement("div");
         winsetup.classList.add("winsetup");
         winsetup.innerText = "Setup New Game";
+        winsetup.addEventListener("click", function (event) {
+          location.reload();
+      });
         winstarts.append(winsetup);
     
         winContainer.append(didit, elapse, movestaken, winstarts);
@@ -1744,6 +1823,8 @@ event.preventDefault();
         main1.append(top, middle, down);
         overall.append(winContainer);
     }
+          // END:: Icons, 1 users and 4x4 grid checked
+
     
     
 
@@ -1987,9 +2068,29 @@ event.preventDefault();
         let winrestart = document.createElement("div");
         winrestart.classList.add("winrestart");
         winrestart.innerText = "Restart";
+        winrestart.addEventListener("click", function (event) {
+          document.querySelector('.playersdown.active-player').classList.remove('active-player');
+          currentplayer = 1;
+          document.querySelector('.playersdown:nth-child(' + currentplayer + ')').classList.add('active-player');
+          playercount[0] = 0;
+          playercount[1] = 0;
+          playercount[2] = 0;
+          playercount[3] = 0;
+          const playerwinCount = document.querySelectorAll('.scorename');
+          playerwinCount.forEach(function (element) {
+              element.textContent = 0;
+          });
+          document.querySelectorAll(".item").forEach(function (element) {
+              element.classList.remove("boxMatch");
+              element.classList.remove("boxOpen");
+          });
+      });
         winstarts.append(winrestart);
         let winsetup = document.createElement("div");
         winsetup.classList.add("winsetup");
+        winsetup.addEventListener("click", function (event) {
+          location.reload();
+      });
         winsetup.innerText = "Setup New Game";
         winstarts.append(winsetup);
     
