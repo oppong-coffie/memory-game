@@ -1,1407 +1,802 @@
-body{
-  padding: 0px;
-  margin: 0px;
+:root {
+  --primary: #fca311;
+  --primary-hover: #e8950f;
+
+  --bg-gradient-start: #141e30;
+  --bg-gradient-end: #243b55;
+
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  /* Frosted glass base */
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+  --text-main: #ffffff;
+  --text-muted: #b0c4de;
+  --text-dark: #152938;
+
+  --card-bg-closed: rgba(255, 255, 255, 0.1);
+  --card-bg-open: var(--primary);
+  --card-border: rgba(255, 255, 255, 0.2);
+
+  --success: #39ff07;
+
+  --font-main: 'Outfit', sans-serif;
 }
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-main);
+  background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+  background-attachment: fixed;
+  color: var(--text-main);
+  min-height: 100vh;
+}
+
+/* =========================================
+   SCREENS & CONTAINERS
+========================================= */
+
+.overall {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Setup Screen */
 .main-container {
-  background-color: rgb(21, 41, 56);
-  padding-left: 21em;
-  padding-right: 31rem;
-  padding-top: 5rem;
-  padding-bottom: 5.35rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
 }
-.main1{
-  background-color: #ffffff;
-  /* background-color: rgba(0, 0, 0, 0.5); */
-  /* backdrop-filter: blur(5px); */
-}
+
 .memory-logo {
-filter: invert(1);
-text-align: center;
-margin-bottom: 4rem;
+  filter: invert(1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+  text-align: center;
+  margin-bottom: 3rem;
+  transition: transform 0.3s ease;
 }
+
+.memory-logo:hover {
+  transform: scale(1.05);
+}
+
+.memory-logo img {
+  max-width: 250px;
+}
+
+/* Glass Card Container */
 .container {
-  padding: 1.5rem;
-  background-color: rgb(242, 242, 242);
-  border-radius: 10px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 24px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
-input {
+
+/* =========================================
+   SETUP CONTROLS
+========================================= */
+
+p.themetitle {
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 0 0 1rem 0;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.container>div>div {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+input[type="radio"] {
   display: none;
-}
-
-input:checked + .box {
-  background-color: rgb(21, 41, 56);
-}
-
-input:checked + .box span {
-  color: rgb(255, 255, 255);
-  transform: translateY(70px);
 }
 
 .box {
-  border-radius: 30px;
-  background-color: rgb(188, 206, 217);
-  display: inline-block;
-  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 50px;
+  color: var(--text-main);
   cursor: pointer;
-  position: relative;
-  font-family: font;
-  font-weight: 900;
-  &:active {
-    transform: translateY(10px);
+  text-align: center;
+  padding: 0.8rem 1rem;
+  flex: 1;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box span {
+  font-size: inherit;
+  color: inherit;
+  transition: transform 0.3s ease;
+}
+
+.box:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.box:active {
+  transform: translateY(2px);
+}
+
+input:checked+.box {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--text-dark);
+  box-shadow: 0 0 20px rgba(252, 163, 17, 0.4);
+}
+
+input:checked+.box span {
+  color: var(--text-dark);
+}
+
+.start {
+  background: var(--primary);
+  color: var(--text-dark);
+  font-family: var(--font-main);
+  font-size: 1.5rem;
+  font-weight: 800;
+  border: none;
+  border-radius: 50px;
+  padding: 1rem 2rem;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(252, 163, 17, 0.3);
+  margin-top: 1rem;
+}
+
+.start:hover {
+  background: var(--primary-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(252, 163, 17, 0.5);
+}
+
+.start:active {
+  transform: translateY(1px);
+}
+
+
+/* =========================================
+   GAME BOARD (.main1)
+========================================= */
+
+.main1 {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  /* Rely on body gradient */
+  padding: 2rem;
+  box-sizing: border-box;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
   }
 }
 
-span {
-  font-size: 2em;
-  color: rgb(255, 255, 255);
-}
-
-.numbers {
-  width: 19rem;
-  height: 50px;
-}
-.icons {
-  width: 19rem;
-  height: 50px;
-  margin-left: 2rem;
-}
-.players {
-  width: 7rem;
-  height: 50px;
-  margin-left: 2rem;
-}
-
-p {
-  color: rgb(113, 145, 165);
-  font-weight: 600;
-  font-size: 20px;
-}
-.start{
-  font-size: 32px;
-  width: 40rem;
-  margin-top: 2rem;
-  border-radius: 60px;
-  background-color: rgb(253, 162, 20);
-  font-weight: 600;
-  color: #fff;
-  border: none;
-  padding: 0.8rem;
-}
-/* css for main 1 */
-.top{
+/* Header */
+.top {
   display: flex;
   justify-content: space-between;
-  padding-left: 10rem;
-  padding-right: 10rem;
-  padding-top: 5rem;
-  padding-bottom: 1rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 1rem 0 3rem 0;
 }
-.restart{
-  background-color: rgb(253, 162, 20);
-  border: none;
-  color: white;
-  font-size: 20px;
-  border-radius: 20rem;
-  border-radius: 20rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;  font-weight: 600;
-margin-right: 1rem;
+
+.top img {
+  max-width: 150px;
 }
-.newgame{
-  background-color: rgb(188, 206, 217);
-  border: none;
-  color: white;
-  font-size: 20px;
-  border-radius: 20rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+
+.startDivDesktop,
+.startsDiv2 {
+  display: flex;
+  gap: 1rem;
+}
+
+.restart,
+.newgame {
+  font-family: var(--font-main);
   font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
 }
-.middle{
-  margin-left: 30%;
-  width: 35%;
+
+.restart {
+  background: var(--primary);
+  color: var(--text-dark);
+  box-shadow: 0 4px 15px rgba(252, 163, 17, 0.3);
+}
+
+.restart:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+.newgame {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  color: var(--text-main);
+  border: 1px solid var(--glass-border);
+}
+
+.newgame:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   CARDS & GRID
+========================================= */
+
+/* Grid Containers */
+.fxfmiddle {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  max-width: 530px;
+  margin: 0 auto;
+  perspective: 1000px;
+  /* 3D effect enabler */
+}
+
+.sxsmiddle {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-gap: 3px;
-}
-
-/* START:: the down div */
-.down{
-  display: flex;
-  gap: 2rem;
-  margin-left: 28%;
-  margin-top: 3rem;
-  margin-bottom: rem;
-}
-.startsDiv2{
-  display: none;
-}
-.playersdown{
-  background-color: rgb(188, 206, 217);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 20px;
-  font-weight: 600;
-  width: 16rem;
-  border-radius: 10px;
-padding: 0.4rem;
-}
-.playername{
-  font-size: 1em;
-  color: rgb(113, 145, 165);
-}
-.scorename{
-  font-size: 2em;
-  color: rgb(21, 51, 56);
-}
-.current{
-  font-size: 20px;
-  color: rgb(21, 41, 56);
-  text-align: center;
-  margin-left: -10rem;
-}
-
-.item{
-  position: relative;
-  width: 100px;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 3em;
- background-color: rgb(188, 206, 217);
- transform: rotateY(180deg);
-  border-radius: 100%;
- transition: 0.25s;
- /* opacity: 0.5; */
-}
-.sxsitem{
-  position: relative;
-  width: 75px;
-  height: 75px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 3em;
- background-color: rgb(188, 206, 217);
- transform: rotateY(180deg);
-  border-radius: 100%;
- transition: 0.25s;
- /* opacity: 0.6; */
-}
-
-.item.boxOpen{
-  transform: rotateY(0deg);
-  background-color: rgb(253, 162, 20);
-}
-.sxsitem.boxOpen{
-  transform: rotateY(0deg);
-  background-color: rgb(253, 162, 20);
-}
-
-.item::after{
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: #152938;
-  transition: 0.25s;
-  /* opacity: 0.45; */
-  transform: rotate(180deg);
-  backface-visibility: hidden;
-  border-radius: 100%;
-}
-.sxsitem::after{
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: #152938;
-  transition: 0.25s;
-  /* opacity: 0.45; */
-  transform: rotate(180deg);
-  backface-visibility: hidden;
-  border-radius: 100%;
-}
-
-.boxOpen:after{
-  transform: rotateY(180deg);
-} 
-
-.boxMatch:after{
-  transform: rotateY(180deg);
-} 
-.fxfmiddle{
-  margin-left: 30%;
-  width: 440px;
-  height: 440px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  transform-style: preserve-3d;
-  perspective: 500px;
-}
-.sxsmiddle{
-  margin-left: 30%;
-  width: 540px;
-  height: 540px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  transform-style: preserve-3d;
-  perspective: 500px;
-}
-
-.timediv{
-  background-color: #f2f2f2;
-  display: flex;
-  gap: 100px;
-  padding: 1rem;
-  border-radius: 10px;
-}
-.movesdiv{
-  background-color: #f2f2f2;
-  display: flex;
-  gap: 100px;
-  padding: 1rem;
-  border-radius: 10px;
-
-}
-.timetitle{
-  font-size: 20px;
-  color: rgb(113, 145, 165);
-
-}
-.time{
-  font-size: 32px;
-  color: rgb(21, 41, 56);
-  font-weight: 600;
-}
-.movestitle{
-  font-size: 20px;
-  color: rgb(113, 145, 165);
-
-}
-.moves{
-  font-size: 32px;
-  color: rgb(21, 41, 56);
-  font-weight: 600;
-}
-
-/* Results */
-.wincontainer{
-  border-radius: 50px;
-  text-align: center;
-  width: 35%;
-  display: none;
-  /* margin-top: -37rem; */
-  z-index: 999;
-  background-color: rgb(255, 255, 255);
-  border-radius: 20px;
-  position: absolute;
-  margin-left: 25rem;
-  padding: 3rem;
-}
-.didtop{
-  font-size: 32px;
-  color: rgb(21, 41, 56);
-  font-weight: 600;
-}
-.diddown{
-  font-size: 20px;
-  color: rgb(113, 145, 165);
-  font-weight: 600;
-}
-.elapse{
-  background-color: rgb(183, 213, 216);
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
-  font-weight: 600;
-  border-radius: 10px;
-  margin-top: 3rem;
-}
-.elapsetitle{
-  color: rgb(113, 145, 165);
-  font-size: 20px;
-}
-.elapsetitletime{
-  color: rgb(21, 41, 56);
-  font-size: 32px;
-}
-.movestaken{
-  margin-top: 1rem;
-  background-color: rgb(183, 213, 216);
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
-  font-weight: 600;
-  border-radius: 10px;}
-.taken_title {
-  color: rgb(57, 255, 7);
-  font-size: 40px;
-}
-.movestaken_time{
-  color: rgb(113, 145, 165);
-  font-size: 32px;
-}
-.winstarts{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   gap: 1rem;
-  margin-top: 3rem;
+  max-width: 600px;
+  margin: 0 auto;
+  perspective: 1000px;
+}
+
+/* Common Card Base */
+.item,
+.sxsitem {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1/1;
+  /* perfect square */
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.item:hover,
+.sxsitem:hover {
+  transform: translateY(-5px);
+}
+
+.item.boxOpen,
+.item.boxMatch,
+.sxsitem.boxOpen,
+.sxsitem.boxMatch {
+  transform: rotateY(180deg);
+}
+
+/* Card Faces */
+.item::before,
+.item::after,
+.sxsitem::before,
+.sxsitem::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  /* Circle cards */
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  font-weight: 800;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.sxsitem::before,
+.sxsitem::after {
+  font-size: 2.2rem;
+}
+
+/* Closed state - Back of card (drawn on ::before to sit on top initially) */
+.item::before,
+.sxsitem::before {
+  background: var(--card-bg-closed);
+  backdrop-filter: blur(8px);
+  border: 2px solid var(--card-border);
+  /* The logo or pattern inside closed card could be added via SVG background */
+  background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 10%, transparent 10%), radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 10%, transparent 10%);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+}
+
+/* Hover state for closed card */
+.item:not(.boxOpen):not(.boxMatch):hover::before,
+.sxsitem:not(.boxOpen):not(.boxMatch):hover::before {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Open state - Front of card (drawn on ::after, rotated) */
+.item::after,
+.sxsitem::after {
+  background: var(--card-bg-open);
+  color: var(--text-dark);
+  transform: rotateY(180deg);
+  content: attr(data-val);
+  /* We'll use a data attribute or innerHTML logic */
+}
+
+/* A small hack since the JS uses innerHTML on the .item directly. 
+   We hide the raw text and display it via an inner wrapper or just style the div itself. 
+   Actually, since the JS injects text directly into .item, let's adjust our 3D approach. */
+
+.item,
+.sxsitem {
+  /* Reset previous before/after */
+  background: transparent;
+  color: transparent;
+  /* Hide text on the container */
+}
+
+.item::before,
+.item::after,
+.sxsitem::before,
+.sxsitem::after {
+  content: '';
+  display: none;
+  /* Disable pseudo elements, we'll use a different trick */
+}
+
+/* NEW 3D APPROACH that works with innerHTML */
+.item,
+.sxsitem {
+  background: var(--card-bg-closed);
+  backdrop-filter: blur(8px);
+  border: 2px solid var(--card-border);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  font-weight: 800;
+  color: transparent;
+  /* hidden when closed */
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  /* Pattern for closed */
+  background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 15%, transparent 16%);
+  background-size: 24px 24px;
+}
+
+.sxsitem {
+  font-size: 2.2rem;
+}
+
+.item:not(.boxOpen):not(.boxMatch):hover,
+.sxsitem:not(.boxOpen):not(.boxMatch):hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.item.boxOpen,
+.sxsitem.boxOpen {
+  background: var(--primary);
+  background-image: none;
+  color: var(--text-dark);
+  transform: rotateY(180deg);
+  border-color: var(--primary);
+  box-shadow: 0 0 30px rgba(252, 163, 17, 0.5);
+}
+
+.item.boxMatch,
+.sxsitem.boxMatch {
+  background: #bcced9;
+  /* matched state color */
+  background-image: none;
+  color: var(--text-dark);
+  transform: rotateY(180deg) scale(0.95);
+  border-color: #bcced9;
+  opacity: 0.8;
+}
+
+/* Because we added rotation, the text inside is backwards! 
+   To fix this without altering JS HTML structure, we rotate the container back 
+   when matched/opened. Actually, we can just rotate the whole item along X or Y, 
+   but it flips the text. Let's flip it BEFORE opening so it's upright when opened. */
+
+.item,
+.sxsitem {
+  transform: rotateY(180deg);
+}
+
+.item:not(.boxOpen):not(.boxMatch):hover,
+.sxsitem:not(.boxOpen):not(.boxMatch):hover {
+  transform: rotateY(180deg) translateY(-5px);
+}
+
+.item.boxOpen,
+.sxsitem.boxOpen {
+  transform: rotateY(0deg);
+}
+
+.item.boxMatch,
+.sxsitem.boxMatch {
+  transform: rotateY(0deg) scale(0.95);
+}
+
+
+/* =========================================
+   SCOREBOARD / BOTTOM AREA
+========================================= */
+
+.down {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 4rem auto 2rem auto;
+  flex-wrap: wrap;
+}
+
+/* Players */
+.playersdown {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 150px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.playersdown::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: transparent;
+  transition: background 0.3s ease;
+}
+
+.playername {
+  font-size: 1rem;
+  color: var(--text-muted);
   font-weight: 600;
-  border-radius: 10px;}
-.winrestart{
-  background-color: rgb(253, 162, 20);
-  color: rgb(21, 41, 56);
-  font-size: 20px;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top:1rem;
-  padding-bottom: 1rem;
-  border-radius: 30px;
-width: 50%;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
-.winsetup{
-  background-color: rgb(183, 213, 216);
-  color: rgb(21, 41, 56);
-  font-size: 20px;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  padding-top:1rem;
-  padding-bottom: 1rem;
-  width: 50%;
-border-radius: 30px;
+
+.scorename {
+  font-size: 2rem;
+  color: var(--text-main);
+  font-weight: 800;
+  margin-top: 0.5rem;
 }
-.active-player{
-  background-color: rgb(253, 162, 20);
+
+.active-player {
+  background: rgba(252, 163, 17, 0.15);
+  border-color: var(--primary);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(252, 163, 17, 0.2);
+}
+
+.active-player::before {
+  background: var(--primary);
+}
+
+.active-player .scorename {
+  color: var(--primary);
+}
+
+/* Current turn indicator (JS puts this beside/below grid) */
+.current {
+  display: none;
+  /* redundant if active-player handles it well */
+}
+
+/* Single player Time & Moves */
+.timediv,
+.movesdiv {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 200px;
+  gap: 2rem;
+}
+
+.timetitle,
+.movestitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.time,
+.moves {
+  font-size: 2rem;
+  color: var(--text-main);
+  font-weight: 800;
 }
 
 
-/* START::Tablet Styles */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-  body{
-    padding: 0px;
-    margin: 0px;
-  }
-  .main-container {
-    background-color: rgb(21, 41, 56);
-    padding-left: 2em;
-    padding-right: 3rem;
-    padding-top: 2rem;
-    padding-bottom: 5.95rem;
-  }
-  .main1{
-    background-color: #ffffff;
-    /* background-color: rgba(0, 0, 0, 0.5); */
-    /* backdrop-filter: blur(5px); */
-  }
-  .memory-logo {
-  filter: invert(1);
+/* =========================================
+   WIN & RESULTS SCREEN
+========================================= */
+
+.wincontainer {
+  display: none;
+  /* JS handles this, but initially it should be out of flow if pos fixed */
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  background: rgba(21, 41, 56, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  border-radius: 24px;
+  padding: 3rem;
+  width: 90%;
+  max-width: 600px;
   text-align: center;
-  margin-bottom: 4rem;
+  z-index: 1000;
+  animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* The original JS explicitly sets winContainer.style.marginTop = "-37rem", so we override it */
+  margin-top: 0 !important;
+}
+
+@keyframes modalPop {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -40%) scale(0.9);
   }
-  .container {
-    padding: 1rem;
-    background-color: rgb(242, 242, 242);
-    border-radius: 10px;
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
   }
-  input {
+}
+
+.didtop {
+  font-size: 3rem;
+  color: var(--text-main);
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.diddown {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+}
+
+.elapse,
+.movestaken {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  border: 1px solid var(--glass-border);
+}
+
+.elapsetitle,
+.taken_title {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.elapsetitletime,
+.movestaken_time {
+  color: var(--primary);
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.winstarts {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.winrestart,
+.winsetup {
+  flex: 1;
+  padding: 1rem;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.winrestart {
+  background: var(--primary);
+  color: var(--text-dark);
+}
+
+.winrestart:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+.winsetup {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-main);
+  border: 1px solid transparent;
+}
+
+.winsetup:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+
+/* =========================================
+   MOBILE & TABLET RESPONSIVENESS
+========================================= */
+
+@media screen and (max-width: 768px) {
+  .top {
+    padding: 1rem 1rem 2rem 1rem;
+  }
+
+  .startDivDesktop {
     display: none;
   }
-  
-  input:checked + .box {
-    background-color: rgb(21, 41, 56);
-  }
-  
-  input:checked + .box span {
-    color: rgb(255, 255, 255);
-    transform: translateY(70px);
-  }
-  
-  .box {
-    border-radius: 30px;
-    background-color: rgb(188, 206, 217);
-    display: inline-block;
-    text-align: center;
+
+  .startsDiv2 {
+    display: block;
+    background: var(--primary);
+    color: var(--text-dark);
+    font-weight: 700;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
     cursor: pointer;
     position: relative;
-    font-family: font;
-    font-weight: 900;
-    &:active {
-      transform: translateY(10px);
-    }
   }
-  
-  span {
-    font-size: 2em;
-    color: rgb(255, 255, 255);
-  }
-  
-  .numbers {
-    width: 19rem;
-    height: 50px;
-  }
-  .icons {
-    width: 19rem;
-    height: 50px;
-    margin-left: 2rem;
-  }
-  .players {
-    width: 7rem;
-    height: 50px;
-    margin-left: 2rem;
-  }
-  
-  p {
-    color: rgb(113, 145, 165);
-    font-weight: 600;
-    font-size: 20px;
-  }
-  .start{
-    font-size: 32px;
-    width: 40rem;
-    margin-top: 2rem;
-    border-radius: 60px;
-    background-color: rgb(253, 162, 20);
-    font-weight: 600;
-    color: #fff;
-    border: none;
+
+  .startsDiv2 li {
+    display: none;
+    /* Hide drop down items initially */
+    list-style: none;
+    background: white;
     padding: 0.8rem;
-  }
-  /* css for main 1 */
-  .top{
-    display: flex;
-    justify-content: space-between;
-    padding-left: 10rem;
-    padding-right: 1rem;
-    padding-top: 4.5rem;
-    padding-bottom: 1rem;
-  }
-  .restart{
-    background-color: rgb(253, 162, 20);
-    border: none;
-    color: white;
-    font-size: 20px;
-    border-radius: 20rem;
-    border-radius: 20rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;  font-weight: 600;
-  margin-right: 1rem;
-  }
-  .newgame{
-    background-color: rgb(188, 206, 217);
-    border: none;
-    color: white;
-    font-size: 20px;
-    border-radius: 20rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    font-weight: 600;
-  }
-  .middle{
-    margin-left: 30%;
-    width: 35%;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-gap: 3px;
-  }
-  
-  /* START:: the down div */
-  .down{
-    margin-left: 18%;
-    margin-top: 2rem;
-  }
-  .playersdown{
-    background-color: rgb(188, 206, 217);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 20px;
-    font-weight: 600;
-    width: 16rem;
-    border-radius: 10px;
-  padding: 0.4rem;
-  }
-  .playername{
-    font-size: 1em;
-    color: rgb(113, 145, 165);
-  }
-  .scorename{
-    font-size: 2em;
-    color: rgb(21, 51, 56);
-  }
-  .current{
-    font-size: 20px;
-    color: rgb(21, 41, 56);
+    position: absolute;
+    right: 0;
+    top: 110%;
+    width: 150px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    color: var(--text-dark);
     text-align: center;
-    margin-left: -10rem;
   }
-  
-  .item{
-    position: relative;
-    width: 100px;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 3em;
-   background-color: rgb(188, 206, 217);
-   transform: rotateY(180deg);
-    border-radius: 100%;
-   transition: 0.25s;
-   /* opacity: 0.5; */
+
+  /* Simple hover/active trick without altering JS too much */
+  .startsDiv2:active li,
+  .startsDiv2:hover li {
+    display: block;
   }
-  .sxsitem{
-    position: relative;
-    width: 75px;
-    height: 75px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 3em;
-   background-color: rgb(188, 206, 217);
-   transform: rotateY(180deg);
-    border-radius: 100%;
-   transition: 0.25s;
-   /* opacity: 0.6; */
+
+  .startsDiv2 li:hover {
+    background: #f0f0f0;
   }
-  
-  .item.boxOpen{
-    transform: rotateY(0deg);
-    background-color: rgb(253, 162, 20);
+
+  .container {
+    padding: 1.5rem;
+    border-radius: 16px;
+    gap: 1.5rem;
   }
-  .sxsitem.boxOpen{
-    transform: rotateY(0deg);
-    background-color: rgb(253, 162, 20);
-  }
-  
-  .item::after{
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: #152938;
-    transition: 0.25s;
-    /* opacity: 0.45; */
-    transform: rotate(180deg);
-    backface-visibility: hidden;
-    border-radius: 100%;
-  }
-  .sxsitem::after{
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: #152938;
-    transition: 0.25s;
-    /* opacity: 0.45; */
-    transform: rotate(180deg);
-    backface-visibility: hidden;
-    border-radius: 100%;
-  }
-  
-  .boxOpen:after{
-    transform: rotateY(180deg);
-  } 
-  
-  .boxMatch:after{
-    transform: rotateY(180deg);
-  } 
-  .fxfmiddle{
-    margin-left: 23%;
-  }
-  .sxsmiddle{
-    margin-left: 30%;
-    width: 540px;
-    height: 540px;
-    display: flex;
+
+  .container>div>div {
     flex-wrap: wrap;
-    gap: 10px;
-    transform-style: preserve-3d;
-    perspective: 500px;
+    /* Allow wrapping on very small screens */
+    gap: 0.5rem;
   }
-  
-  .timediv{
-    background-color: #f2f2f2;
-    display: flex;
-    gap: 100px;
-    padding: 1rem;
-    border-radius: 10px;
+
+  .fxfmiddle {
+    gap: 0.8rem;
+    padding: 0 1rem;
   }
-  .movesdiv{
-    background-color: #f2f2f2;
-    display: flex;
-    gap: 100px;
-    padding: 1rem;
-    border-radius: 10px;
-  
+
+  .sxsmiddle {
+    gap: 0.5rem;
+    padding: 0 0.5rem;
   }
-  .timetitle{
-    font-size: 20px;
-    color: rgb(113, 145, 165);
-  
+
+  .item,
+  .sxsitem {
+    font-size: 2rem;
   }
-  .time{
-    font-size: 32px;
-    color: rgb(21, 41, 56);
-    font-weight: 600;
+
+  .sxsitem {
+    font-size: 1.5rem;
   }
-  .movestitle{
-    font-size: 20px;
-    color: rgb(113, 145, 165);
-  
-  }
-  .moves{
-    font-size: 32px;
-    color: rgb(21, 41, 56);
-    font-weight: 600;
-  }
-  
-  /* Results */
-  .wincontainer{
-    width: 55%;
-    margin-left: 15rem;
-  }
-  .didtop{
-    font-size: 32px;
-    color: rgb(21, 41, 56);
-    font-weight: 600;
-  }
-  .diddown{
-    font-size: 20px;
-    color: rgb(113, 145, 165);
-    font-weight: 600;
-  }
-  .elapse{
-    background-color: rgb(183, 213, 216);
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-    font-weight: 600;
-    border-radius: 10px;
-    margin-top: 3rem;
-  }
-  .elapsetitle{
-    color: rgb(113, 145, 165);
-    font-size: 20px;
-  }
-  .elapsetitletime{
-    color: rgb(21, 41, 56);
-    font-size: 32px;
-  }
-  .movestaken{
-    margin-top: 1rem;
-    background-color: rgb(183, 213, 216);
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-    font-weight: 600;
-    border-radius: 10px;}
-  .taken_title {
-    color: rgb(57, 255, 7);
-    font-size: 40px;
-  }
-  .movestaken_time{
-    color: rgb(113, 145, 165);
-    font-size: 32px;
-  }
-  .winstarts{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+  .down {
+    padding: 0 1rem;
     gap: 1rem;
-    margin-top: 3rem;
-    font-weight: 600;
-    border-radius: 10px;}
-  .winrestart{
-    background-color: rgb(253, 162, 20);
-    color: rgb(21, 41, 56);
-    font-size: 20px;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top:1rem;
-    padding-bottom: 1rem;
-    border-radius: 30px;
-  width: 50%;
   }
-  .winsetup{
-    background-color: rgb(183, 213, 216);
-    color: rgb(21, 41, 56);
-    font-size: 20px;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-top:1rem;
-    padding-bottom: 1rem;
-    width: 50%;
-  border-radius: 30px;
+
+  .playersdown {
+    min-width: calc(50% - 0.5rem);
+    padding: 0.8rem 1rem;
   }
-  .active-player{
-    background-color: rgb(253, 162, 20);
+
+  .scorename {
+    font-size: 1.5rem;
+  }
+
+  .wincontainer {
+    width: 95%;
+    padding: 2rem;
+  }
+
+  .winstarts {
+    flex-direction: column;
   }
 }
-/* END::Tablet Styles */
-
-
-
-/* START:: Between phone and tablet */
-@media screen and (min-width: 375px) and (max-width: 768px) {
-  .startDivDesktop{
-    display: none;
-  }
-
-  .startsDiv2{
-    display: block;
-    background-color: rgb(253, 162, 20);
-    border: none;
-    color: white;
-    font-size: 20px;
-    border-radius: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;  
-    font-weight: 600;
-    margin-right: 0rem;
-  }
-  
-  .startsDiv2>li{
-    color: rgb(113, 145, 165);
-    background-color: rgb(252, 170, 39);
-  }
-
-  .main-container {
-    padding-left: 1em;
-    padding-right: 1rem;
-    padding-top: 1rem;
-    
-    }
-
-  .memory-logo {
-  margin-bottom: 1rem;
-  }
-  .container {
-    padding: 9rem;
-  }
-  input {
-    display: none;
-  }
-
-  
-  .box {
-    border-radius: 30px;
-    background-color: rgb(188, 206, 217);
-    display: inline-block;
-    text-align: center;
-    cursor: pointer;
-    position: relative;
-    font-family: font;
-    font-weight: 900;
-    &:active {
-      transform: translateY(10px);
-    }
-  }
-  
-  span {
-    font-size: 2em;
-    color: rgb(255, 255, 255);
-  }
-  
-  .numbers {
-    width: 10em;
-  }
-  .icons {
-    width: 7rem;
-    margin-left: 1rem;
-  }
-  .players {
-    width: 7rem;
-    margin: 1rem;
-  }
-  
-  .start{
-    width: 17rem;
-    margin-top: 1rem;
-    padding: 0.4rem;
-    margin-left: 10px;
-  }
-  /* css for main 1 */
-  .top{
-    display: flex;
-    justify-content: space-between;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 5rem;
-    padding-bottom: 1rem;
-  }
-  .restart{
-    background-color: rgb(253, 162, 20);
-    border: none;
-    color: white;
-    font-size: 20px;
-    border-radius: 20rem;
-    border-radius: 20rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;  font-weight: 600;
-  margin-right: 1rem;
-  }
-  .newgame{
-    background-color: rgb(188, 206, 217);
-    border: none;
-    color: white;
-    font-size: 20px;
-    border-radius: 20rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    font-weight: 600;
-  }
-  .middle{
-    margin-left: 30%;
-    width: 35%;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-gap: 3px;
-  }
-  
-  /* START:: the down div */
-  .down{
-    display: flex;
-    gap: 1rem;
-    margin-left: 0.1rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
-  .playersdown{
-    background-color: rgb(188, 206, 217);
-    display: block;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 20px;
-    font-weight: 600;
-    width: 16rem;
-    border-radius: 10px;
-    padding: 0.4rem;
-  }
-  .playername{
-    font-size: 0.9em;
-    color: rgb(113, 145, 165);
-  }
-  .scorename{
-    font-size: 1.5em;
-    color: rgb(21, 51, 56);
-  }
-  .current{
-    font-size: 20px;
-    color: rgb(21, 41, 56);
-    text-align: center;
-    margin-left: -10rem;
-  }
-  
-  .item{
-    position: relative;
-    width: 70px;
-    height: 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 3em;
-   background-color: rgb(188, 206, 217);
-   transform: rotateY(180deg);
-    border-radius: 100%;
-   transition: 0.25s;
-  }
-  .sxsitem{
-    width: 55px;
-    height: 55px;
-    font-size: 2em;
-   background-color: rgb(188, 206, 217);
-   transform: rotateY(180deg);
-    border-radius: 100%;
-   transition: 0.25s;
-  }
-  
-  .item.boxOpen{
-    transform: rotateY(0deg);
-    background-color: rgb(253, 162, 20);
-  }
-  .sxsitem.boxOpen{
-    transform: rotateY(0deg);
-    background-color: rgb(253, 162, 20);
-  }
-  
-  .item::after{
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: #152938;
-    transition: 0.25s;
-    /* opacity: 0.45; */
-    transform: rotate(180deg);
-    backface-visibility: hidden;
-    border-radius: 100%;
-  }
-  .sxsitem::after{
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: #152938;
-    transition: 0.25s;
-    /* opacity: 0.45; */
-    transform: rotate(180deg);
-    backface-visibility: hidden;
-    border-radius: 100%;
-  }
-  
-  .boxOpen:after{
-    transform: rotateY(180deg);
-  } 
-  
-  .boxMatch:after{
-    transform: rotateY(180deg);
-  } 
-  .fxfmiddle{
-    margin-left: 16%;
-    width: 310px;
-    height: 320px;
-  }
-  .sxsmiddle{
-    margin-left: 4%;
-    width: 350px;
-    height: 360px;
-    gap: 3px;
-  }
-  
-  .timediv{
-    background-color: #f2f2f2;
-    display: flex;
-    gap: 1px;
-    padding: 1rem;
-    border-radius: 10px;
-  }
-  .movesdiv{
-    background-color: #f2f2f2;
-    display: flex;
-    gap: 1px;
-    padding: 1rem;
-    border-radius: 10px;
-  
-  }
-  .timetitle{
-    font-size: 20px;
-    color: rgb(113, 145, 165);
-  
-  }
-  .time{
-    font-size: 32px;
-    color: rgb(21, 41, 56);
-    font-weight: 600;
-  }
-  .movestitle{
-    font-size: 20px;
-    color: rgb(113, 145, 165);
-  
-  }
-  .moves{
-    font-size: 32px;
-    color: rgb(21, 41, 56);
-    font-weight: 600;
-  }
-  
-  /* Results */
-  .wincontainer{
-    width: 85%;
-    display: none;
-    margin-left: 1rem;
-    padding: 1rem;
-  }
-  .didtop{
-    font-size: 32px;
-  }
-  .diddown{
-    font-size: 20px;
-  }
-  .elapse{
-    margin-top: 1rem;
-  }
-  .elapsetitle{
-    color: rgb(113, 145, 165);
-    font-size: 20px;
-  }
-  .elapsetitletime{
-    color: rgb(21, 41, 56);
-    font-size: 32px;
-  }
-  .movestaken{
-    margin-top: 1rem;
-    background-color: rgb(183, 213, 216);
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-    font-weight: 600;
-    border-radius: 10px;
-  }
-  .taken_title {
-    color: rgb(57, 255, 7);
-    font-size: 40px;
-  }
-  .movestaken_time{
-    color: rgb(113, 145, 165);
-    font-size: 32px;
-  }
-  .winstarts{
-    display: block;
-    margin-top: 2rem;
-  }
-  .winrestart{
-    width: 90%;
-    margin-bottom: 1rem;
-  }
-  .winsetup{
-    padding-left: 1rem;
-    padding-right: 1rem;
-    width: 90%;
-  }
-  .active-player{
-    background-color: rgb(253, 162, 20);
-  }
-}
-
-
-/* START:: Mobile phones */
-@media screen and (max-width: 768px){
-
-  .startDivDesktop{
-    display: none;
-  }
-
-  .startsDiv2{
-    display: block;
-    background-color: rgb(253, 162, 20);
-    border: none;
-    color: white;
-    font-size: 20px;
-    border-radius: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;  
-    font-weight: 600;
-    margin-right: 0rem;
-  }
-  
-  .startsDiv2>li{
-    color: rgb(113, 145, 165);
-    background-color: rgb(252, 170, 39);
-  }
-
-  .main-container {
-    padding-left: 1em;
-    padding-right: 1rem;
-    padding-top: 1rem;
-  }
-
-  .memory-logo {
-  margin-bottom: 1rem;
-  }
-  .container {
-    padding: 0.3rem;
-  }
-  input {
-    display: none;
-  }
-
-  
-  .box {
-    border-radius: 30px;
-    background-color: rgb(188, 206, 217);
-    display: inline-block;
-    text-align: center;
-    cursor: pointer;
-    position: relative;
-    font-family: font;
-    font-weight: 900;
-    &:active {
-      transform: translateY(10px);
-    }
-  }
-  
-  span {
-    font-size: 2em;
-    color: rgb(255, 255, 255);
-  }
-  
-  .numbers {
-    width: 10em;
-  }
-  .icons {
-    width: 7rem;
-    margin-left: 1rem;
-  }
-  .players {
-    width: 7rem;
-    margin: 1rem;
-  }
-  
-  .start{
-    width: 17rem;
-    margin-top: 1rem;
-    padding: 0.4rem;
-    margin-left: 10px;
-  }
-  /* css for main 1 */
-  .top{
-    display: flex;
-    justify-content: space-between;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 5rem;
-    padding-bottom: 1rem;
-  }
-  .restart{
-    background-color: rgb(253, 162, 20);
-    border: none;
-    color: white;
-    font-size: 20px;
-    border-radius: 20rem;
-    border-radius: 20rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;  font-weight: 600;
-  margin-right: 1rem;
-  }
-  .newgame{
-    background-color: rgb(188, 206, 217);
-    border: none;
-    color: white;
-    font-size: 20px;
-    border-radius: 20rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    font-weight: 600;
-  }
-  .middle{
-    margin-left: 30%;
-    width: 35%;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-gap: 3px;
-  }
-  
-  /* START:: the down div */
-  .down{
-    display: flex;
-    gap: 1rem;
-    margin-left: 0.1rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
-  .playersdown{
-    background-color: rgb(188, 206, 217);
-    display: block;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 20px;
-    font-weight: 600;
-    width: 16rem;
-    border-radius: 10px;
-    padding: 0.4rem;
-  }
-  .playername{
-    font-size: 0.9em;
-    color: rgb(113, 145, 165);
-  }
-  .scorename{
-    font-size: 1.5em;
-    color: rgb(21, 51, 56);
-  }
-  .current{
-    font-size: 20px;
-    color: rgb(21, 41, 56);
-    text-align: center;
-    margin-left: -10rem;
-  }
-  
-  .item{
-    position: relative;
-    width: 70px;
-    height: 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 3em;
-   background-color: rgb(188, 206, 217);
-   transform: rotateY(180deg);
-    border-radius: 100%;
-   transition: 0.25s;
-  }
-  .sxsitem{
-    width: 55px;
-    height: 55px;
-    font-size: 2em;
-   background-color: rgb(188, 206, 217);
-   transform: rotateY(180deg);
-    border-radius: 100%;
-   transition: 0.25s;
-  }
-  
-  .item.boxOpen{
-    transform: rotateY(0deg);
-    background-color: rgb(253, 162, 20);
-  }
-  .sxsitem.boxOpen{
-    transform: rotateY(0deg);
-    background-color: rgb(253, 162, 20);
-  }
-  
-  .item::after{
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: #152938;
-    transition: 0.25s;
-    /* opacity: 0.45; */
-    transform: rotate(180deg);
-    backface-visibility: hidden;
-    border-radius: 100%;
-  }
-  .sxsitem::after{
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: #152938;
-    transition: 0.25s;
-    /* opacity: 0.45; */
-    transform: rotate(180deg);
-    backface-visibility: hidden;
-    border-radius: 100%;
-  }
-  
-  .boxOpen:after{
-    transform: rotateY(180deg);
-  } 
-  
-  .boxMatch:after{
-    transform: rotateY(180deg);
-  } 
-  .fxfmiddle{
-    margin-left: 9%;
-    width: 310px;
-    height: 320px;
-  }
-  .sxsmiddle{
-    margin-left: 4%;
-    width: 350px;
-    height: 360px;
-    gap: 3px;
-  }
-  
-  .timediv{
-    background-color: #f2f2f2;
-    display: flex;
-    gap: 1px;
-    padding: 1rem;
-    border-radius: 10px;
-  }
-  .movesdiv{
-    background-color: #f2f2f2;
-    display: flex;
-    gap: 1px;
-    padding: 1rem;
-    border-radius: 10px;
-  
-  }
-  .timetitle{
-    font-size: 20px;
-    color: rgb(113, 145, 165);
-  
-  }
-  .time{
-    font-size: 32px;
-    color: rgb(21, 41, 56);
-    font-weight: 600;
-  }
-  .movestitle{
-    font-size: 20px;
-    color: rgb(113, 145, 165);
-  
-  }
-  .moves{
-    font-size: 32px;
-    color: rgb(21, 41, 56);
-    font-weight: 600;
-  }
-  
-  /* Results */
-  .wincontainer{
-    width: 85%;
-    display: none;
-    margin-left: 1rem;
-    padding: 1rem;
-  }
-  .didtop{
-    font-size: 32px;
-  }
-  .diddown{
-    font-size: 20px;
-  }
-  .elapse{
-    margin-top: 1rem;
-  }
-  .elapsetitle{
-    color: rgb(113, 145, 165);
-    font-size: 20px;
-  }
-  .elapsetitletime{
-    color: rgb(21, 41, 56);
-    font-size: 32px;
-  }
-  .movestaken{
-    margin-top: 1rem;
-    background-color: rgb(183, 213, 216);
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-    font-weight: 600;
-    border-radius: 10px;
-  }
-  .taken_title {
-    color: rgb(57, 255, 7);
-    font-size: 40px;
-  }
-  .movestaken_time{
-    color: rgb(113, 145, 165);
-    font-size: 32px;
-  }
-  .winstarts{
-    display: block;
-    margin-top: 2rem;
-  }
-  .winrestart{
-    width: 90%;
-    margin-bottom: 1rem;
-  }
-  .winsetup{
-    padding-left: 1rem;
-    padding-right: 1rem;
-    width: 90%;
-  }
-  .active-player{
-    background-color: rgb(253, 162, 20);
-  }
-}
-/* END:: Mobile phones */
-
