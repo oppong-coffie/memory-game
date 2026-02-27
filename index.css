@@ -78,13 +78,13 @@ body {
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
   box-shadow: var(--glass-shadow);
-  border-radius: 24px;
+  border-radius: 2px;
   padding: 2.5rem;
   width: 100%;
   max-width: 600px;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 /* =========================================
@@ -582,11 +582,11 @@ input:checked+.box span {
 
 .wincontainer {
   display: none;
-  /* JS handles this, but initially it should be out of flow if pos fixed */
-  position: fixed !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
+  /* JS handles this, but initially it should be out of flow if pos abs */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background: rgba(21, 41, 56, 0.95);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -598,8 +598,8 @@ input:checked+.box span {
   text-align: center;
   z-index: 1000;
   animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  /* The original JS explicitly sets winContainer.style.marginTop = "-37rem", so we override it */
   margin-top: 0 !important;
+  /* Force center by overriding JS injected marginTop */
 }
 
 @keyframes modalPop {
