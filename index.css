@@ -39,7 +39,7 @@ body {
 
 .overall {
   width: 100%;
-  min-height: 100vh;
+  /* min-height: 80vh; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,7 +52,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 0.4rem;
   box-sizing: border-box;
 }
 
@@ -84,6 +84,8 @@ body {
   max-width: 600px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -192,7 +194,7 @@ input:checked+.box span {
   flex-direction: column;
   background: transparent;
   /* Rely on body gradient */
-  padding: 2rem;
+  padding: 0rem;
   box-sizing: border-box;
   animation: fadeIn 0.5s ease-out;
 }
@@ -217,7 +219,7 @@ input:checked+.box span {
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
-  padding: 1rem 0 3rem 0;
+  padding: 0.2rem 0 1.6rem 0;
 }
 
 .top img {
@@ -282,9 +284,9 @@ input:checked+.box span {
 
 .sxsmiddle {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 1rem;
-  max-width: 600px;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.8rem;
+  max-width: 700px;
   margin: 0 auto;
   perspective: 1000px;
 }
@@ -476,7 +478,7 @@ input:checked+.box span {
   justify-content: center;
   gap: 1.5rem;
   max-width: 800px;
-  margin: 4rem auto 2rem auto;
+  margin: 3rem auto 2rem auto;
   flex-wrap: wrap;
 }
 
@@ -486,7 +488,7 @@ input:checked+.box span {
   backdrop-filter: blur(10px);
   border: 1px solid var(--glass-border);
   border-radius: 12px;
-  padding: 1rem 1.5rem;
+  padding: 0.5rem 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -798,5 +800,27 @@ input:checked+.box span {
 
   .winstarts {
     flex-direction: column;
+  }
+}
+
+/* Master Card Sparkle Animation */
+.sparkle {
+  animation: sparkle 1.5s ease-in-out infinite alternate !important;
+  border-color: #ffd700 !important;
+  box-shadow: 0 0 20px #ffd700, 0 0 40px #ff8c00 !important;
+}
+
+@keyframes sparkle {
+  0% {
+    filter: brightness(1) drop-shadow(0 0 5px #ffd700);
+    transform: scale(1) rotateY(0deg);
+  }
+  50% {
+    filter: brightness(1.5) drop-shadow(0 0 20px #fff);
+    transform: scale(1.05) rotateY(0deg);
+  }
+  100% {
+    filter: brightness(1.2) drop-shadow(0 0 10px #ffd700);
+    transform: scale(1) rotateY(0deg);
   }
 }

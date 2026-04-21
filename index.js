@@ -319,9 +319,9 @@ event.preventDefault();
       const numbers = [
         "1", "2", "3", "4", "5", "6", "7", "8",
         "9", "10", "11", "12", "13", "14", "15", "16",
-        "17", "18", "1", "2", "3", "4", "5", "6",
+        "17", "1", "2", "3", "4", "5", "6",
         "7", "8", "9", "10", "11", "12", "13", "14",
-        "15", "16", "17", "18",
+        "15", "16", "17", "★"
       ];
 
       function switchplayer() {
@@ -337,6 +337,36 @@ event.preventDefault();
         box.innerHTML = shuf_numbers[i];
 
         box.onclick = function () {
+          if (this.innerHTML === "★") {
+            if (!this.classList.contains("boxMatch")) {
+              this.classList.add("boxOpen", "boxMatch", "sparkle");
+              const playerwinCount = document.querySelector('.playersdown.active-player .scorename');
+              playercount[currentplayer - 1]++;
+              playerwinCount.textContent = playercount[currentplayer - 1];
+              
+              if (document.querySelectorAll(".boxMatch").length == numbers.length) {
+                // Trigger win check
+                for (let i = 0; i < numberOfPlayers; i++) {
+                  let elapse = document.createElement("div");
+                  elapse.classList.add("elapse");
+                  let elapsetitle = document.createElement("div");
+                  elapsetitle.classList.add("elapsetitle");
+                  elapsetitle.innerText = "Player " + (i + 1);
+                  elapse.append(elapsetitle);
+                  let elapsetime = document.createElement("div");
+                  elapsetime.classList.add("elapsetitletime");
+                  elapsetime.innerText = playercount[i];
+                  elapse.append(elapsetime);
+                  winContainer.append(elapse);
+                }
+                main1.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+                main1.style.backdropFilter = "blur(5px)";
+                winContainer.style.marginTop = "-37rem";
+              }
+            }
+            return;
+          }
+
           this.classList.add("boxOpen");
           setTimeout(function () {
             if (document.querySelectorAll(".boxOpen").length > 1) {
@@ -556,42 +586,8 @@ event.preventDefault();
   
       function handledivs() {
           const numbers = [
-              "1",
-              "2",
-              "3",
-              "4",
-              "5",
-              "6",
-              "7",
-              "8",
-              "9",
-              "10",
-              "11",
-              "12",
-              "13",
-              "14",
-              "15",
-              "16",
-              "17",
-              "18",
-              "1",
-              "2",
-              "3",
-              "4",
-              "5",
-              "6",
-              "7",
-              "8",
-              "9",
-              "10",
-              "11",
-              "12",
-              "13",
-              "14",
-              "15",
-              "16",
-              "17",
-              "18",
+              "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17",
+              "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "★"
           ];
           var shuf_numbers = numbers.sort(() => (Math.random() > 0.5 ? 2 : -1));
           for (var i = 0; i < numbers.length; i++) {
@@ -600,7 +596,6 @@ event.preventDefault();
               box.innerHTML = shuf_numbers[i];
   
               box.onclick = function () {
-  
                   if (!isrunning) {
                       isrunning = true;
                       intervalId = setInterval(() => {
@@ -609,6 +604,26 @@ event.preventDefault();
                           sec++;
                       }, 1000);
                   }
+
+                  if (this.innerHTML === "★") {
+                    if (!this.classList.contains("boxMatch")) {
+                      this.classList.add("boxOpen", "boxMatch", "sparkle");
+                      numberOfMoves += 0.5;
+                      moves.innerText = Math.floor(numberOfMoves);
+                      movestaken_time.innerText = numberOfMoves + "Moves";
+
+                      if (document.querySelectorAll(".boxMatch").length == numbers.length) {
+                        winContainer.style.display = "block";
+                        main1.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+                        main1.style.backdropFilter = "blur(5px)";
+                        winContainer.style.marginTop = "-35rem";
+                        clearInterval(intervalId);
+                        isrunning = false;
+                      }
+                    }
+                    return;
+                  }
+
                   numberOfMoves += 0.5;
                   moves.innerText = Math.floor(numberOfMoves);
                   movestaken_time.innerText = numberOfMoves + "Moves";
@@ -850,9 +865,9 @@ event.preventDefault();
           const numbers = [
               "anchor", "flask", "hand-spock", "trophy", "snowflake", "sun", "moon", "hourglass-half",
               "expand-arrows-alt", "retweet", "sync", "compress-arrows-alt", "random", "balance-scale",
-              "apple-alt", "graduation-cap", "wifi", "euro-sign", "anchor", "flask", "hand-spock", "trophy",
+              "apple-alt", "graduation-cap", "wifi", "anchor", "flask", "hand-spock", "trophy",
               "snowflake", "sun", "moon", "hourglass-half", "expand-arrows-alt", "retweet", "sync",
-              "compress-arrows-alt", "random", "balance-scale", "apple-alt", "graduation-cap", "wifi", "euro-sign"
+              "compress-arrows-alt", "random", "balance-scale", "apple-alt", "graduation-cap", "wifi", "star"
           ];
           function switchplayer() {
               document.querySelector('.playersdown.active-player').classList.remove('active-player');
@@ -868,6 +883,35 @@ event.preventDefault();
               iclass.classList.add("fa", "fa-" + shuf_numbers[i]);
               box.append(iclass);
               box.onclick = function () {
+                  if (shuf_numbers[numbers.indexOf(this.querySelector('i').className.replace('fa fa-', ''))] === "star" || this.querySelector('.fa-star')) {
+                    if (!this.classList.contains("boxMatch")) {
+                      this.classList.add("boxOpen", "boxMatch", "sparkle");
+                      const playerwinCount = document.querySelector('.playersdown.active-player .scorename');
+                      playercount[currentplayer - 1]++;
+                      playerwinCount.textContent = playercount[currentplayer - 1];
+                      
+                      if (document.querySelectorAll(".boxMatch").length == numbers.length) {
+                        for (let i = 0; i < numberOfPlayers; i++) {
+                          let elapse = document.createElement("div");
+                          elapse.classList.add("elapse");
+                          let elapsetitle = document.createElement("div");
+                          elapsetitle.classList.add("elapsetitle");
+                          elapsetitle.innerText = "Player " + (i + 1);
+                          elapse.append(elapsetitle);
+                          let elapsetime = document.createElement("div");
+                          elapsetime.classList.add("elapsetitletime");
+                          elapsetime.innerText = playercount[i];
+                          elapse.append(elapsetime);
+                          winContainer.append(elapse);
+                        }
+                        main1.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+                        main1.style.backdropFilter = "blur(5px)";
+                        winContainer.style.marginTop = "-37rem";
+                      }
+                    }
+                    return;
+                  }
+
                   this.classList.add("boxOpen");
                   setTimeout(function () {
                       if (document.querySelectorAll(".boxOpen").length > 1) {
@@ -1112,9 +1156,9 @@ event.preventDefault();
             const numbers = [
                 "anchor", "flask", "hand-spock", "trash", "snowflake", "sun", "moon", "hourglass-half",
                 "expand-arrows-alt", "retweet", "sync", "compress-arrows-alt", "random", "balance-scale",
-                "apple-alt", "graduation-cap", "wifi", "euro-sign", "anchor", "flask", "hand-spock", "trash",
+                "apple-alt", "graduation-cap", "wifi", "anchor", "flask", "hand-spock", "trash",
                 "snowflake", "sun", "moon", "hourglass-half", "expand-arrows-alt", "retweet", "sync",
-                "compress-arrows-alt", "random", "balance-scale", "apple-alt", "graduation-cap", "wifi", "euro-sign"
+                "compress-arrows-alt", "random", "balance-scale", "apple-alt", "graduation-cap", "wifi", "star"
             ];
             var shuf_numbers = numbers.sort(() => (Math.random() > 0.5 ? 2 : -1));
             for (var i = 0; i < numbers.length; i++) {
@@ -1124,8 +1168,6 @@ event.preventDefault();
                 iclass.classList.add("fa", "fa-" + shuf_numbers[i]);
                 box.append(iclass);
                 box.onclick = function () {
-    
-    
                     if (!isrunning) {
                         isrunning = true;
                         intervalId = setInterval(() => {
@@ -1134,6 +1176,26 @@ event.preventDefault();
                             sec++;
                         }, 1000);
                     }
+
+                    if (shuf_numbers[numbers.indexOf(this.querySelector('i').className.replace('fa fa-', ''))] === "star" || this.querySelector('.fa-star')) {
+                        if (!this.classList.contains("boxMatch")) {
+                          this.classList.add("boxOpen", "boxMatch", "sparkle");
+                          numberOfMoves += 0.5;
+                          moves.innerText = Math.floor(numberOfMoves);
+                          movestaken_time.innerText = numberOfMoves + "Moves";
+    
+                          if (document.querySelectorAll(".boxMatch").length == numbers.length) {
+                             winContainer.style.display = "block";
+                             main1.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+                             main1.style.backdropFilter = "blur(5px)";
+                             winContainer.style.marginTop = "-35rem";
+                             clearInterval(intervalId);
+                             isrunning = false;
+                          }
+                        }
+                        return;
+                    }
+
                     numberOfMoves += 0.5;
                     moves.innerText = Math.floor(numberOfMoves);
                     movestaken_time.innerText = numberOfMoves + "Moves";
